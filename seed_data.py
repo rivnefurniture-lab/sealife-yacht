@@ -34,7 +34,7 @@ def seed_data():
         BlogPost.query.delete()
         GalleryItem.query.delete()
         
-        # Sample trips
+        # Sample trips - Montenegro locations
         trips_data = [
             {
                 'title_uk': 'Bareboat Skipper — Квітень',
@@ -46,8 +46,8 @@ def seed_data():
                 'price': 1500,
                 'discount_percent': 15,
                 'discount_until': date(2026, 3, 15),
-                'location_uk': 'Греція, Афіни',
-                'location_en': 'Greece, Athens',
+                'location_uk': 'Чорногорія, Тіват',
+                'location_en': 'Montenegro, Tivat',
                 'trip_type': 'course',
                 'difficulty': 'beginner',
                 'max_participants': 6,
@@ -58,21 +58,21 @@ def seed_data():
                 'is_active': True
             },
             {
-                'title_uk': 'Подорож Кіклади — Травень',
-                'title_en': 'Cyclades Trip — May',
-                'description_uk': '<p>Незабутня морська подорож по найкрасивіших островах Греції. Санторіні, Міконос, Наксос, Парос — кожен острів унікальний та неповторний.</p><p>Це ідеальна можливість поєднати відпочинок з навчанням яхтингу. Ви будете активним учасником команди та отримаєте практичний досвід керування яхтою.</p>',
-                'description_en': '<p>An unforgettable sea voyage through the most beautiful islands of Greece. Santorini, Mykonos, Naxos, Paros — each island is unique.</p><p>This is the perfect opportunity to combine relaxation with yacht training. You will be an active team member and gain practical yacht management experience.</p>',
+                'title_uk': 'Подорож Бока-Которська затока — Травень',
+                'title_en': 'Bay of Kotor Trip — May',
+                'description_uk': '<p>Незабутня морська подорож по найкрасивішій затоці Адріатики. Котор, Пераст, Герцег-Новий — кожне місто унікальне та неповторне.</p><p>Це ідеальна можливість поєднати відпочинок з навчанням яхтингу. Ви будете активним учасником команди та отримаєте практичний досвід керування яхтою.</p>',
+                'description_en': '<p>An unforgettable sea voyage through the most beautiful bay of the Adriatic. Kotor, Perast, Herceg Novi — each town is unique.</p><p>This is the perfect opportunity to combine relaxation with yacht training. You will be an active team member and gain practical yacht management experience.</p>',
                 'start_date': date(2026, 5, 10),
                 'end_date': date(2026, 5, 17),
                 'price': 1200,
                 'discount_percent': 0,
-                'location_uk': 'Греція, Кіклади',
-                'location_en': 'Greece, Cyclades',
+                'location_uk': 'Чорногорія, Бока-Которська затока',
+                'location_en': 'Montenegro, Bay of Kotor',
                 'trip_type': 'trip',
                 'difficulty': 'beginner',
                 'max_participants': 8,
-                'highlights_uk': '• 5+ островів за тиждень\n• Санторіні та Міконос\n• Купання в кришталево чистих водах\n• Грецька кухня та вино',
-                'highlights_en': '• 5+ islands in a week\n• Santorini and Mykonos\n• Swimming in crystal clear waters\n• Greek cuisine and wine',
+                'highlights_uk': '• Стародавні міста Котор та Пераст\n• Острів Богородиці на Рифі\n• Купання в кришталево чистих водах\n• Чорногорська кухня та вино',
+                'highlights_en': '• Ancient towns of Kotor and Perast\n• Our Lady of the Rocks island\n• Swimming in crystal clear waters\n• Montenegrin cuisine and wine',
                 'included_uk': '• Місце на яхті\n• Досвідчений капітан\n• Паливо та стоянки\n• Страхування',
                 'included_en': '• Place on yacht\n• Experienced captain\n• Fuel and marina fees\n• Insurance',
                 'is_active': True
@@ -87,24 +87,24 @@ def seed_data():
                 'price': 1800,
                 'discount_percent': 10,
                 'discount_until': date(2026, 5, 1),
-                'location_uk': 'Греція, Саронічна затока',
-                'location_en': 'Greece, Saronic Gulf',
+                'location_uk': 'Чорногорія, Будва',
+                'location_en': 'Montenegro, Budva',
                 'trip_type': 'course',
                 'difficulty': 'intermediate',
                 'max_participants': 6,
                 'is_active': True
             },
             {
-                'title_uk': 'Експедиція Іонічні острови',
-                'title_en': 'Ionian Islands Expedition',
-                'description_uk': '<p>Двотижнева експедиція по Іонічних островах. Корфу, Лефкада, Кефалонія, Закінтос — найзеленіші острови Греції з бірюзовими водами.</p>',
-                'description_en': '<p>Two-week expedition through the Ionian Islands. Corfu, Lefkada, Kefalonia, Zakynthos — the greenest islands of Greece with turquoise waters.</p>',
+                'title_uk': 'Експедиція Адріатика',
+                'title_en': 'Adriatic Expedition',
+                'description_uk': '<p>Двотижнева експедиція узбережжям Чорногорії та Хорватії. Дубровнік, Корчула, Хвар — найкрасивіші місця Адріатики з бірюзовими водами.</p>',
+                'description_en': '<p>Two-week expedition along the coast of Montenegro and Croatia. Dubrovnik, Korčula, Hvar — the most beautiful places of the Adriatic with turquoise waters.</p>',
                 'start_date': date(2026, 7, 5),
                 'end_date': date(2026, 7, 19),
                 'price': 2200,
                 'discount_percent': 0,
-                'location_uk': 'Греція, Іонічні острови',
-                'location_en': 'Greece, Ionian Islands',
+                'location_uk': 'Чорногорія — Хорватія',
+                'location_en': 'Montenegro — Croatia',
                 'trip_type': 'expedition',
                 'difficulty': 'intermediate',
                 'max_participants': 8,
@@ -116,7 +116,7 @@ def seed_data():
             trip = Trip(**trip_data)
             db.session.add(trip)
         
-        # Sample blog posts
+        # Sample blog posts - Montenegro focused
         posts_data = [
             {
                 'title_uk': 'Як обрати перший курс яхтингу',
@@ -132,16 +132,16 @@ def seed_data():
                 'is_published': True
             },
             {
-                'title_uk': '5 причин навчитися яхтингу в Греції',
-                'title_en': '5 Reasons to Learn Sailing in Greece',
-                'slug': '5-reasons-learn-sailing-greece',
-                'excerpt_uk': 'Чому Греція — ідеальне місце для навчання яхтингу. Погода, острови та інфраструктура.',
-                'excerpt_en': 'Why Greece is the perfect place to learn sailing. Weather, islands and infrastructure.',
-                'content_uk': '<p>Греція — одне з найкращих місць у світі для навчання яхтингу. Ось 5 головних причин:</p><h3>1. Ідеальна погода</h3><p>300+ сонячних днів на рік та стабільні вітри створюють ідеальні умови для навчання.</p><h3>2. Тисячі островів</h3><p>Більше 6000 островів означають нескінченні можливості для подорожей та практики.</p><h3>3. Розвинена інфраструктура</h3><p>Сотні марин, чартерних компаній та яхт-клубів.</p><h3>4. Доступні ціни</h3><p>Порівняно з Карибами чи Хорватією, Греція пропонує відмінне співвідношення ціни та якості.</p><h3>5. Культура та історія</h3><p>Кожен острів — це нова історія, нова кухня та нові враження.</p>',
-                'content_en': '<p>Greece is one of the best places in the world to learn sailing. Here are 5 main reasons:</p><h3>1. Perfect Weather</h3><p>300+ sunny days per year and stable winds create ideal learning conditions.</p><h3>2. Thousands of Islands</h3><p>More than 6000 islands mean endless opportunities for travel and practice.</p><h3>3. Developed Infrastructure</h3><p>Hundreds of marinas, charter companies and yacht clubs.</p><h3>4. Affordable Prices</h3><p>Compared to the Caribbean or Croatia, Greece offers excellent value for money.</p><h3>5. Culture and History</h3><p>Each island is a new story, new cuisine and new experiences.</p>',
-                'tags': 'греція, яхтинг, острови, подорожі',
-                'meta_description_uk': '5 причин навчитися яхтингу в Греції. Погода, острови та доступні ціни.',
-                'meta_description_en': '5 reasons to learn sailing in Greece. Weather, islands and affordable prices.',
+                'title_uk': '5 причин навчитися яхтингу в Чорногорії',
+                'title_en': '5 Reasons to Learn Sailing in Montenegro',
+                'slug': '5-reasons-learn-sailing-montenegro',
+                'excerpt_uk': 'Чому Чорногорія — ідеальне місце для навчання яхтингу. Погода, краєвиди та інфраструктура.',
+                'excerpt_en': 'Why Montenegro is the perfect place to learn sailing. Weather, scenery and infrastructure.',
+                'content_uk': '<p>Чорногорія — одне з найкращих місць у світі для навчання яхтингу. Ось 5 головних причин:</p><h3>1. Ідеальна погода</h3><p>240+ сонячних днів на рік та стабільні вітри створюють ідеальні умови для навчання.</p><h3>2. Бока-Которська затока</h3><p>Найкрасивіша затока Європи — ідеальне місце для перших кроків у яхтингу.</p><h3>3. Розвинена інфраструктура</h3><p>Сучасні марини Porto Montenegro та Marina Kotor.</p><h3>4. Доступні ціни</h3><p>Порівняно з Хорватією чи Італією, Чорногорія пропонує відмінне співвідношення ціни та якості.</p><h3>5. Близькість до України</h3><p>Пряме авіасполучення та безвізовий режим для українців.</p>',
+                'content_en': '<p>Montenegro is one of the best places in the world to learn sailing. Here are 5 main reasons:</p><h3>1. Perfect Weather</h3><p>240+ sunny days per year and stable winds create ideal learning conditions.</p><h3>2. Bay of Kotor</h3><p>The most beautiful bay in Europe — perfect for your first steps in yachting.</p><h3>3. Developed Infrastructure</h3><p>Modern marinas Porto Montenegro and Marina Kotor.</p><h3>4. Affordable Prices</h3><p>Compared to Croatia or Italy, Montenegro offers excellent value for money.</p><h3>5. Easy Access</h3><p>Direct flights and convenient location on the Adriatic coast.</p>',
+                'tags': 'чорногорія, яхтинг, адріатика, подорожі',
+                'meta_description_uk': '5 причин навчитися яхтингу в Чорногорії. Погода, краєвиди та доступні ціни.',
+                'meta_description_en': '5 reasons to learn sailing in Montenegro. Weather, scenery and affordable prices.',
                 'is_published': True
             },
             {
@@ -170,4 +170,3 @@ if __name__ == '__main__':
     # Create uploads directory
     os.makedirs('static/uploads', exist_ok=True)
     seed_data()
-
