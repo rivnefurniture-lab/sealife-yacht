@@ -126,7 +126,7 @@
                         {% endif %}
                     </div>
                     
-                    <a href="https://t.me/sealife_yacht?text={{ ('Вітаю! Мене цікавить: ' + trip.title_uk)|urlencode if lang == 'uk' else ('Hello! I am interested in: ' + trip.title_en)|urlencode }}" 
+                    <a href="https://t.me/{{ config.get('TG_CONTACT', 'a_liudvichuk') }}?text={{ ('Вітаю! Мене цікавить: ' + trip.title_uk)|urlencode if lang == 'uk' else ('Hello! I am interested in: ' + trip.title_en)|urlencode }}" 
                        target="_blank" 
                        class="btn btn-primary btn-lg" 
                        style="width: 100%; margin-bottom: 0.75rem;">
