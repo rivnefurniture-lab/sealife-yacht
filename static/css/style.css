@@ -1426,3 +1426,358 @@ textarea.form-control {
 .gap-1 { gap: var(--space-md); }
 .gap-2 { gap: var(--space-xl); }
 
+/* ============== MOBILE RESPONSIVE ============== */
+
+/* iOS specific fixes */
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+input, textarea, select, button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-size: 16px; /* Prevents iOS zoom on focus */
+}
+
+/* Touch-friendly tap targets */
+a, button, .btn, .filter-btn, .nav-link {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* Safe area for iPhone notch */
+@supports (padding: max(0px)) {
+    .header {
+        padding-left: max(var(--space-lg), env(safe-area-inset-left));
+        padding-right: max(var(--space-lg), env(safe-area-inset-right));
+    }
+    
+    .footer {
+        padding-bottom: max(var(--space-xl), env(safe-area-inset-bottom));
+    }
+    
+    .tg-float {
+        bottom: max(30px, calc(env(safe-area-inset-bottom) + 20px));
+        right: max(20px, env(safe-area-inset-right));
+    }
+}
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+    :root {
+        --space-4xl: 4rem;
+        --space-3xl: 3rem;
+    }
+    
+    .header-inner {
+        height: 70px;
+    }
+    
+    .nav-actions .btn {
+        display: none;
+    }
+    
+    .hero-stats {
+        gap: var(--space-xl);
+    }
+    
+    .hero-stat-number {
+        font-size: 2.5rem;
+    }
+    
+    .about-image-badge {
+        width: 120px;
+        height: 120px;
+        bottom: -20px;
+        right: -20px;
+    }
+    
+    .about-image-badge .number {
+        font-size: 2.5rem;
+    }
+    
+    .trip-detail-sidebar {
+        position: relative;
+        top: 0;
+    }
+}
+
+/* Mobile Large (481px - 767px) */
+@media (max-width: 767px) {
+    :root {
+        --space-4xl: 3rem;
+        --space-3xl: 2rem;
+        --space-2xl: 1.5rem;
+    }
+    
+    .container {
+        padding: 0 var(--space-md);
+    }
+    
+    .header-inner {
+        height: 60px;
+    }
+    
+    .logo img, .logo svg {
+        height: 40px;
+    }
+    
+    .logo-text {
+        font-size: 1rem;
+    }
+    
+    .logo-text span {
+        font-size: 0.6rem;
+    }
+    
+    .mobile-menu {
+        top: 60px;
+        padding: var(--space-lg);
+    }
+    
+    /* Hero mobile */
+    .hero {
+        min-height: calc(100vh - 60px);
+        min-height: calc(100dvh - 60px); /* Dynamic viewport height for mobile */
+    }
+    
+    .hero-content {
+        padding: var(--space-2xl) 0;
+    }
+    
+    .hero-badge {
+        font-size: 0.75rem;
+        padding: var(--space-xs) var(--space-md);
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .hero-stats {
+        flex-direction: column;
+        gap: var(--space-lg);
+        text-align: center;
+    }
+    
+    .hero-stat-number {
+        font-size: 2rem;
+    }
+    
+    .hero-decor {
+        display: none;
+    }
+    
+    /* About mobile */
+    .about-image-badge {
+        width: 100px;
+        height: 100px;
+        bottom: -15px;
+        right: 10px;
+    }
+    
+    .about-image-badge .number {
+        font-size: 2rem;
+    }
+    
+    .about-features {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Cards mobile */
+    .trip-card-image {
+        height: 200px;
+    }
+    
+    .trip-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .trip-card-price .current-price {
+        font-size: 1.25rem;
+    }
+    
+    .blog-card-image {
+        height: 180px;
+    }
+    
+    /* Trip detail mobile */
+    .trip-detail-hero {
+        height: 50vh;
+        min-height: 350px;
+    }
+    
+    .trip-detail-hero-content {
+        padding: var(--space-xl);
+    }
+    
+    .trip-detail-hero-content h1 {
+        font-size: 1.5rem !important;
+    }
+    
+    .trip-booking-price .current-price {
+        font-size: 2.5rem;
+    }
+    
+    /* Page header mobile */
+    .page-header {
+        padding: calc(60px + var(--space-2xl)) 0 var(--space-2xl);
+    }
+    
+    .breadcrumb {
+        flex-wrap: wrap;
+        font-size: 0.75rem;
+    }
+    
+    /* Footer mobile */
+    .footer {
+        padding: var(--space-2xl) 0 var(--space-lg);
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    /* Forms mobile */
+    .form-control {
+        padding: var(--space-md);
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    /* Telegram buttons mobile */
+    .tg-float {
+        bottom: 20px;
+        right: 15px;
+        gap: 10px;
+    }
+    
+    .tg-btn {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .tg-btn svg {
+        width: 22px;
+        height: 22px;
+    }
+    
+    /* Contact page mobile */
+    .grid-2 {
+        gap: var(--space-2xl) !important;
+    }
+}
+
+/* Mobile Small (320px - 480px) */
+@media (max-width: 480px) {
+    :root {
+        --space-4xl: 2.5rem;
+        --space-3xl: 1.5rem;
+        --space-2xl: 1.25rem;
+    }
+    
+    h1 { font-size: clamp(1.75rem, 8vw, 2.5rem); }
+    h2 { font-size: clamp(1.5rem, 6vw, 2rem); }
+    h3 { font-size: clamp(1.25rem, 5vw, 1.5rem); }
+    
+    .btn {
+        padding: var(--space-sm) var(--space-lg);
+        font-size: 0.875rem;
+    }
+    
+    .btn-lg {
+        padding: var(--space-md) var(--space-xl);
+    }
+    
+    .section-header {
+        margin-bottom: var(--space-xl);
+    }
+    
+    .trip-card-body {
+        padding: var(--space-md);
+    }
+    
+    .trip-card-footer {
+        flex-direction: column;
+        gap: var(--space-md);
+        align-items: flex-start;
+    }
+    
+    .trip-card-footer .btn {
+        width: 100%;
+    }
+    
+    .filters {
+        gap: var(--space-xs);
+    }
+    
+    .filter-btn {
+        padding: var(--space-xs) var(--space-md);
+        font-size: 0.8rem;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-sm);
+    }
+    
+    .trip-booking-card {
+        padding: var(--space-lg);
+    }
+    
+    .cta-section .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Landscape orientation on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding: var(--space-4xl) 0;
+    }
+    
+    .hero-stats {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+/* High DPI / Retina displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .logo img, .logo svg {
+        image-rendering: -webkit-optimize-contrast;
+    }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+    /* Can be enabled later if needed */
+}
+
