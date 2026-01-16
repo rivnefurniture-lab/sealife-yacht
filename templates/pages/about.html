@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ 'Про нас' if lang == 'uk' else 'About Us' }} - Sea Life Yacht School{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="{{ url_for('home') }}">{{ 'Головна' if lang == 'uk' else 'Home' }}</a>
+            <span>/</span>
+            <span>{{ 'Про нас' if lang == 'uk' else 'About Us' }}</span>
+        </nav>
+        <h1>{{ 'Про Sea Life' if lang == 'uk' else 'About Sea Life' }}</h1>
+        <p>{{ 'Школа яхтингу та організація морських подорожей' if lang == 'uk' else 'Yacht school and sea travel organization' }}</p>
+    </div>
+</section>
+
+<section class="section about-section">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80" alt="Sea Life Team">
+                <div class="about-image-badge">
+                    <span class="number">10+</span>
+                    <span class="text">{{ 'років' if lang == 'uk' else 'years' }}</span>
+                </div>
+            </div>
+            
+            <div class="about-content">
+                <h2>{{ 'Наша історія' if lang == 'uk' else 'Our Story' }}</h2>
+                <p>{{ 'Sea Life Yacht School — це більше ніж школа яхтингу. Це спільнота людей, які закохані в море та вітрильний спорт. Ми почали свій шлях понад 10 років тому з простої ідеї — зробити яхтинг доступним для кожного.' if lang == 'uk' else 'Sea Life Yacht School is more than just a yacht school. It\'s a community of people who are in love with the sea and sailing. We started our journey over 10 years ago with a simple idea — to make yachting accessible to everyone.' }}</p>
+                <p>{{ 'Сьогодні ми пропонуємо професійне навчання за міжнародними стандартами IYT та організовуємо незабутні морські подорожі Середземномор\'ям. Наша база знаходиться в Греції — країні з ідеальними умовами для яхтингу.' if lang == 'uk' else 'Today we offer professional training according to international IYT standards and organize unforgettable sea adventures in the Mediterranean. Our base is located in Greece — a country with ideal conditions for yachting.' }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2>{{ 'Чому обирають нас' if lang == 'uk' else 'Why Choose Us' }}</h2>
+        </div>
+        
+        <div class="grid grid-4">
+            <div class="about-feature" style="flex-direction: column; text-align: center;">
+                <div class="about-feature-icon" style="margin: 0 auto 1rem;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                </div>
+                <h4>{{ 'Сертифіковані курси' if lang == 'uk' else 'Certified Courses' }}</h4>
+                <p>{{ 'Міжнародні ліцензії IYT, визнані по всьому світу' if lang == 'uk' else 'International IYT licenses recognized worldwide' }}</p>
+            </div>
+            
+            <div class="about-feature" style="flex-direction: column; text-align: center;">
+                <div class="about-feature-icon" style="margin: 0 auto 1rem;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                </div>
+                <h4>{{ 'Досвідчені інструктори' if lang == 'uk' else 'Experienced Instructors' }}</h4>
+                <p>{{ 'Багаторічний досвід та міжнародні сертифікати' if lang == 'uk' else 'Years of experience and international certificates' }}</p>
+            </div>
+            
+            <div class="about-feature" style="flex-direction: column; text-align: center;">
+                <div class="about-feature-icon" style="margin: 0 auto 1rem;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                </div>
+                <h4>{{ 'Греція' if lang == 'uk' else 'Greece' }}</h4>
+                <p>{{ 'Найкращі акваторії Середземномор\'я для навчання' if lang == 'uk' else 'Best Mediterranean waters for training' }}</p>
+            </div>
+            
+            <div class="about-feature" style="flex-direction: column; text-align: center;">
+                <div class="about-feature-icon" style="margin: 0 auto 1rem;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <h4>{{ 'Сучасні яхти' if lang == 'uk' else 'Modern Yachts' }}</h4>
+                <p>{{ 'Bavaria, Jeanneau, Beneteau — найкращі виробники' if lang == 'uk' else 'Bavaria, Jeanneau, Beneteau — top manufacturers' }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section cta-section">
+    <div class="container">
+        <h2>{{ 'Готові почати?' if lang == 'uk' else 'Ready to Start?' }}</h2>
+        <p>{{ 'Зв\'яжіться з нами та отримайте консультацію щодо вибору курсу або подорожі' if lang == 'uk' else 'Contact us and get advice on choosing a course or trip' }}</p>
+        <div class="hero-buttons" style="justify-content: center;">
+            <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">
+                {{ 'Зв\'язатися з нами' if lang == 'uk' else 'Contact Us' }}
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

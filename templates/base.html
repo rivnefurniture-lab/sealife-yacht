@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sea Life Yacht School{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}Sea Life Yacht School - навчання яхтингу та морські подорожі{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}яхтинг, навчання, подорожі, море, яхта, школа{% endblock %}">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="{% block og_title %}Sea Life Yacht School{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Навчання яхтингу та незабутні морські подорожі{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ url_for('static', filename='images/og-image.jpg') }}{% endblock %}">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/favicon.svg') }}">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="{{ url_for('home') }}" class="logo">
+                    <svg width="50" height="50" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="47" stroke="#E8A838" stroke-width="3" fill="none"/>
+                        <path d="M50 15 L50 70 M25 70 L75 70 M50 15 L25 70 M50 15 L75 70" stroke="#E8A838" stroke-width="3" fill="none"/>
+                    </svg>
+                    <div class="logo-text">
+                        SEA LIFE
+                        <span>Yacht School</span>
+                    </div>
+                </a>
+                
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="{{ url_for('home') }}" class="nav-link {% if request.endpoint == 'home' %}active{% endif %}">
+                            {{ 'Головна' if lang == 'uk' else 'Home' }}
+                        </a></li>
+                        <li><a href="{{ url_for('about') }}" class="nav-link {% if request.endpoint == 'about' %}active{% endif %}">
+                            {{ 'Про нас' if lang == 'uk' else 'About' }}
+                        </a></li>
+                        <li><a href="{{ url_for('trips') }}" class="nav-link {% if request.endpoint in ['trips', 'trip_detail'] %}active{% endif %}">
+                            {{ 'Курси / Подорожі' if lang == 'uk' else 'Courses / Trips' }}
+                        </a></li>
+                        <li><a href="{{ url_for('gallery') }}" class="nav-link {% if request.endpoint == 'gallery' %}active{% endif %}">
+                            {{ 'Галерея' if lang == 'uk' else 'Gallery' }}
+                        </a></li>
+                        <li><a href="{{ url_for('blog') }}" class="nav-link {% if request.endpoint in ['blog', 'blog_post'] %}active{% endif %}">
+                            {{ 'Блог' if lang == 'uk' else 'Blog' }}
+                        </a></li>
+                        <li><a href="{{ url_for('contact') }}" class="nav-link {% if request.endpoint == 'contact' %}active{% endif %}">
+                            {{ 'Контакти' if lang == 'uk' else 'Contact' }}
+                        </a></li>
+                    </ul>
+                    
+                    <div class="nav-actions">
+                        <div class="lang-switch">
+                            <a href="{{ url_for('set_lang', lang='uk') }}" class="{% if lang == 'uk' %}active{% endif %}">UA</a>
+                            <a href="{{ url_for('set_lang', lang='en') }}" class="{% if lang == 'en' %}active{% endif %}">EN</a>
+                        </div>
+                        <a href="https://t.me/{{ config.get('TG_CHANNEL', 'sealife_yacht_channel') }}" target="_blank" class="btn btn-tg-channel btn-sm" title="{{ 'Наш канал' if lang == 'uk' else 'Our Channel' }}">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.324-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.1.154.234.169.33.015.097.034.318.019.49z"/>
+                            </svg>
+                            {{ 'Канал' if lang == 'uk' else 'Channel' }}
+                        </a>
+                        <a href="https://t.me/{{ config.get('TG_CONTACT', 'sealife_yacht') }}" target="_blank" class="btn btn-primary btn-sm">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                            </svg>
+                            {{ 'Написати' if lang == 'uk' else 'Message' }}
+                        </a>
+                    </div>
+                    
+                    <button class="mobile-toggle" id="mobileToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="nav-links">
+            <li><a href="{{ url_for('home') }}" class="nav-link">{{ 'Головна' if lang == 'uk' else 'Home' }}</a></li>
+            <li><a href="{{ url_for('about') }}" class="nav-link">{{ 'Про нас' if lang == 'uk' else 'About' }}</a></li>
+            <li><a href="{{ url_for('trips') }}" class="nav-link">{{ 'Курси / Подорожі' if lang == 'uk' else 'Courses / Trips' }}</a></li>
+            <li><a href="{{ url_for('gallery') }}" class="nav-link">{{ 'Галерея' if lang == 'uk' else 'Gallery' }}</a></li>
+            <li><a href="{{ url_for('blog') }}" class="nav-link">{{ 'Блог' if lang == 'uk' else 'Blog' }}</a></li>
+            <li><a href="{{ url_for('contact') }}" class="nav-link">{{ 'Контакти' if lang == 'uk' else 'Contact' }}</a></li>
+        </ul>
+        <div class="lang-switch" style="margin-top: 2rem;">
+            <a href="{{ url_for('set_lang', lang='uk') }}" class="{% if lang == 'uk' %}active{% endif %}">UA</a>
+            <a href="{{ url_for('set_lang', lang='en') }}" class="{% if lang == 'en' %}active{% endif %}">EN</a>
+        </div>
+    </div>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="container" style="padding-top: 100px;">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="{{ url_for('home') }}" class="logo">
+                        <svg width="50" height="50" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="47" stroke="#E8A838" stroke-width="3" fill="none"/>
+                            <path d="M50 15 L50 70 M25 70 L75 70 M50 15 L25 70 M50 15 L75 70" stroke="#E8A838" stroke-width="3" fill="none"/>
+                        </svg>
+                        <div class="logo-text">
+                            SEA LIFE
+                            <span>Yacht School</span>
+                        </div>
+                    </a>
+                    <p>{{ 'Школа яхтингу та організація морських подорожей. Відкрийте для себе світ вітрильного спорту разом з нами.' if lang == 'uk' else 'Yacht school and sea travel organization. Discover the world of sailing with us.' }}</p>
+                    <div class="footer-social">
+                        <a href="https://t.me/{{ config.get('TG_CHANNEL', 'sealife_yacht_channel') }}" target="_blank" title="Telegram">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.324-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.1.154.234.169.33.015.097.034.318.019.49z"/>
+                            </svg>
+                        </a>
+                        <a href="https://instagram.com/sealife_yacht" target="_blank" title="Instagram">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="https://facebook.com/sealifeyacht" target="_blank" title="Facebook">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="https://youtube.com/@sealifeyacht" target="_blank" title="YouTube">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4>{{ 'Навігація' if lang == 'uk' else 'Navigation' }}</h4>
+                    <ul class="footer-links">
+                        <li><a href="{{ url_for('home') }}">{{ 'Головна' if lang == 'uk' else 'Home' }}</a></li>
+                        <li><a href="{{ url_for('about') }}">{{ 'Про нас' if lang == 'uk' else 'About' }}</a></li>
+                        <li><a href="{{ url_for('trips') }}">{{ 'Курси' if lang == 'uk' else 'Courses' }}</a></li>
+                        <li><a href="{{ url_for('trips') }}?type=trip">{{ 'Подорожі' if lang == 'uk' else 'Trips' }}</a></li>
+                        <li><a href="{{ url_for('gallery') }}">{{ 'Галерея' if lang == 'uk' else 'Gallery' }}</a></li>
+                        <li><a href="{{ url_for('blog') }}">{{ 'Блог' if lang == 'uk' else 'Blog' }}</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4>{{ 'Курси' if lang == 'uk' else 'Courses' }}</h4>
+                    <ul class="footer-links">
+                        <li><a href="{{ url_for('trips') }}?type=course">Bareboat Skipper</a></li>
+                        <li><a href="{{ url_for('trips') }}?type=course">Day Skipper</a></li>
+                        <li><a href="{{ url_for('trips') }}?type=course">Coastal Skipper</a></li>
+                        <li><a href="{{ url_for('trips') }}?type=course">Yachtmaster</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4>{{ 'Контакти' if lang == 'uk' else 'Contact' }}</h4>
+                    <div class="footer-contact">
+                        <div class="footer-contact-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <span>{{ 'Греція, Афіни' if lang == 'uk' else 'Greece, Athens' }}</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            <span>info@sealife.school</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.324-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.1.154.234.169.33.015.097.034.318.019.49z"/>
+                            </svg>
+                            <span>@{{ config.get('TG_CONTACT', 'sealife_yacht') }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; {{ current_year }} Sea Life Yacht School. {{ 'Всі права захищено.' if lang == 'uk' else 'All rights reserved.' }}</p>
+                <div class="lang-switch">
+                    <a href="{{ url_for('set_lang', lang='uk') }}" class="{% if lang == 'uk' %}active{% endif %}">UA</a>
+                    <a href="{{ url_for('set_lang', lang='en') }}" class="{% if lang == 'en' %}active{% endif %}">EN</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Telegram Float Buttons -->
+    <div class="tg-float">
+        <a href="https://t.me/{{ config.get('TG_CHANNEL', 'sealife_yacht_channel') }}" target="_blank" class="tg-btn tg-btn-channel" title="{{ 'Наш канал' if lang == 'uk' else 'Our Channel' }}">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.324-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.1.154.234.169.33.015.097.034.318.019.49z"/>
+            </svg>
+        </a>
+        <a href="https://t.me/{{ config.get('TG_CONTACT', 'sealife_yacht') }}" target="_blank" class="tg-btn tg-btn-contact" title="{{ 'Написати нам' if lang == 'uk' else 'Message Us' }}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+            </svg>
+        </a>
+    </div>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+        });
+    </script>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
+

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вхід - Sea Life Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body class="login-page">
+    <div class="login-card">
+        <div class="login-logo">
+            <svg width="80" height="80" viewBox="0 0 100 100" fill="none">
+                <circle cx="50" cy="50" r="47" stroke="#E8A838" stroke-width="3"/>
+                <path d="M50 15 L50 70 M25 70 L75 70 M50 15 L25 70 M50 15 L75 70" stroke="#E8A838" stroke-width="3"/>
+            </svg>
+            <h1>Sea Life Admin</h1>
+        </div>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <form method="POST" class="login-form">
+            <div class="form-group">
+                <label class="form-label">Пароль</label>
+                <input type="password" name="password" class="form-control" placeholder="Введіть пароль" required autofocus>
+            </div>
+            <button type="submit" class="btn btn-primary">Увійти</button>
+        </form>
+    </div>
+</body>
+</html>
+

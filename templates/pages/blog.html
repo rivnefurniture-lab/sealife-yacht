@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ 'Блог' if lang == 'uk' else 'Blog' }} - Sea Life Yacht School{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="{{ url_for('home') }}">{{ 'Головна' if lang == 'uk' else 'Home' }}</a>
+            <span>/</span>
+            <span>{{ 'Блог' if lang == 'uk' else 'Blog' }}</span>
+        </nav>
+        <h1>{{ 'Блог' if lang == 'uk' else 'Blog' }}</h1>
+        <p>{{ 'Корисні статті про яхтинг та морські подорожі' if lang == 'uk' else 'Useful articles about yachting and sea travel' }}</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        {% if current_tag %}
+        <div style="margin-bottom: 2rem;">
+            <span style="background: var(--primary); color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.875rem;">
+                {{ 'Тег' if lang == 'uk' else 'Tag' }}: {{ current_tag }}
+            </span>
+            <a href="{{ url_for('blog') }}" style="margin-left: 1rem; color: var(--gray-500);">{{ 'Скинути' if lang == 'uk' else 'Reset' }}</a>
+        </div>
+        {% endif %}
+        
+        {% if posts.items %}
+        <div class="grid grid-3">
+            {% for post in posts.items %}
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    {% if post.image %}
+                    <img src="{{ url_for('static', filename='uploads/' + post.image) }}" alt="{{ post.title_uk if lang == 'uk' else post.title_en }}">
+                    {% else %}
+                    <img src="https://images.unsplash.com/photo-1559827291-72ee739d0d9a?w=600&q=80" alt="Blog">
+                    {% endif %}
+                </div>
+                <div class="blog-card-body">
+                    <div class="blog-card-date">{{ post.created_at.strftime('%d %B %Y') }}</div>
+                    <h3><a href="{{ url_for('blog_post', slug=post.slug) }}">{{ post.title_uk if lang == 'uk' else post.title_en }}</a></h3>
+                    <p>{{ (post.excerpt_uk if lang == 'uk' else post.excerpt_en) or '' }}</p>
+                    {% if post.tags %}
+                    <div class="blog-card-tags">
+                        {% for tag in post.tags.split(',')[:3] %}
+                        <a href="{{ url_for('blog', tag=tag.strip()) }}" class="blog-card-tag">{{ tag.strip() }}</a>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        
+        {% if posts.pages > 1 %}
+        <div class="pagination">
+            {% if posts.has_prev %}
+            <a href="{{ url_for('blog', page=posts.prev_num, tag=current_tag) }}">&laquo;</a>
+            {% endif %}
+            
+            {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
+                {% if page_num %}
+                    <a href="{{ url_for('blog', page=page_num, tag=current_tag) }}" class="{% if page_num == posts.page %}active{% endif %}">{{ page_num }}</a>
+                {% else %}
+                    <span>...</span>
+                {% endif %}
+            {% endfor %}
+            
+            {% if posts.has_next %}
+            <a href="{{ url_for('blog', page=posts.next_num, tag=current_tag) }}">&raquo;</a>
+            {% endif %}
+        </div>
+        {% endif %}
+        
+        {% else %}
+        <div class="text-center" style="padding: 4rem;">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--gray-300)" stroke-width="1.5" style="margin-bottom: 1rem;">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <polyline points="10 9 9 9 8 9"/>
+            </svg>
+            <h3 style="color: var(--gray-500); margin-bottom: 0.5rem;">{{ 'Статей поки немає' if lang == 'uk' else 'No articles yet' }}</h3>
+            <p class="text-muted">{{ 'Скоро тут з\'являться корисні матеріали' if lang == 'uk' else 'Useful content coming soon' }}</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+

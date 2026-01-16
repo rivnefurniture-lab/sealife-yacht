@@ -1,0 +1,128 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}{{ 'Редагувати' if trip else 'Додати' }} курс/подорож{% endblock %}
+{% block page_title %}{{ 'Редагувати' if trip else 'Додати' }} курс/подорож{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <form method="POST" enctype="multipart/form-data">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="form-label">Назва (UA) *</label>
+                    <input type="text" name="title_uk" class="form-control" value="{{ trip.title_uk if trip else '' }}" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Назва (EN) *</label>
+                    <input type="text" name="title_en" class="form-control" value="{{ trip.title_en if trip else '' }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Локація (UA)</label>
+                    <input type="text" name="location_uk" class="form-control" value="{{ trip.location_uk if trip else '' }}" placeholder="Греція, Афіни">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Локація (EN)</label>
+                    <input type="text" name="location_en" class="form-control" value="{{ trip.location_en if trip else '' }}" placeholder="Greece, Athens">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Дата початку *</label>
+                    <input type="date" name="start_date" class="form-control" value="{{ trip.start_date.strftime('%Y-%m-%d') if trip else '' }}" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Дата закінчення *</label>
+                    <input type="date" name="end_date" class="form-control" value="{{ trip.end_date.strftime('%Y-%m-%d') if trip else '' }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Ціна (€) *</label>
+                    <input type="number" name="price" class="form-control" value="{{ trip.price|int if trip else '' }}" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Тип</label>
+                    <select name="trip_type" class="form-control form-select">
+                        <option value="course" {% if trip and trip.trip_type == 'course' %}selected{% endif %}>Курс</option>
+                        <option value="trip" {% if trip and trip.trip_type == 'trip' %}selected{% endif %}>Подорож</option>
+                        <option value="expedition" {% if trip and trip.trip_type == 'expedition' %}selected{% endif %}>Експедиція</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Знижка (%)</label>
+                    <input type="number" name="discount_percent" class="form-control" value="{{ trip.discount_percent if trip else '' }}" min="0" max="100">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Знижка діє до</label>
+                    <input type="date" name="discount_until" class="form-control" value="{{ trip.discount_until.strftime('%Y-%m-%d') if trip and trip.discount_until else '' }}">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Рівень складності</label>
+                    <select name="difficulty" class="form-control form-select">
+                        <option value="">Не вказано</option>
+                        <option value="beginner" {% if trip and trip.difficulty == 'beginner' %}selected{% endif %}>Початківець</option>
+                        <option value="intermediate" {% if trip and trip.difficulty == 'intermediate' %}selected{% endif %}>Середній</option>
+                        <option value="advanced" {% if trip and trip.difficulty == 'advanced' %}selected{% endif %}>Просунутий</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Макс. учасників</label>
+                    <input type="number" name="max_participants" class="form-control" value="{{ trip.max_participants if trip else 10 }}">
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="form-label">Опис (UA)</label>
+                    <textarea name="description_uk" class="form-control" rows="4">{{ trip.description_uk if trip else '' }}</textarea>
+                </div>
+                <div class="form-group full-width">
+                    <label class="form-label">Опис (EN)</label>
+                    <textarea name="description_en" class="form-control" rows="4">{{ trip.description_en if trip else '' }}</textarea>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="form-label">Що вас чекає (UA)</label>
+                    <textarea name="highlights_uk" class="form-control" rows="3" placeholder="Список переваг...">{{ trip.highlights_uk if trip else '' }}</textarea>
+                </div>
+                <div class="form-group full-width">
+                    <label class="form-label">Що вас чекає (EN)</label>
+                    <textarea name="highlights_en" class="form-control" rows="3">{{ trip.highlights_en if trip else '' }}</textarea>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="form-label">Що включено (UA)</label>
+                    <textarea name="included_uk" class="form-control" rows="3">{{ trip.included_uk if trip else '' }}</textarea>
+                </div>
+                <div class="form-group full-width">
+                    <label class="form-label">Що включено (EN)</label>
+                    <textarea name="included_en" class="form-control" rows="3">{{ trip.included_en if trip else '' }}</textarea>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="form-label">Зображення</label>
+                    {% if trip and trip.image %}
+                    <div class="image-preview">
+                        <img src="{{ url_for('static', filename='uploads/' + trip.image) }}" alt="Preview">
+                    </div>
+                    {% endif %}
+                    <input type="file" name="image" class="form-control" accept="image/*">
+                    <span class="form-hint">Рекомендований розмір: 1200x800px</span>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="form-check">
+                        <input type="checkbox" name="is_active" {% if not trip or trip.is_active %}checked{% endif %}>
+                        Активна (показувати на сайті)
+                    </label>
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                <button type="submit" class="btn btn-primary">Зберегти</button>
+                <a href="{{ url_for('admin_trips') }}" class="btn btn-secondary">Скасувати</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+

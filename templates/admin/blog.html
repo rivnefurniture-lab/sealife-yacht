@@ -1,0 +1,92 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Блог{% endblock %}
+{% block page_title %}Блог{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>Всі статті</h2>
+        <a href="{{ url_for('admin_blog_add') }}" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Додати статтю
+        </a>
+    </div>
+    <div class="card-body">
+        {% if posts %}
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Заголовок</th>
+                        <th>Теги</th>
+                        <th>Перегляди</th>
+                        <th>Дата</th>
+                        <th>Статус</th>
+                        <th>Дії</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in posts %}
+                    <tr>
+                        <td>
+                            <strong>{{ post.title_uk }}</strong>
+                            <br><small style="color: var(--gray-500);">/blog/{{ post.slug }}</small>
+                        </td>
+                        <td>
+                            {% if post.tags %}
+                            {% for tag in post.tags.split(',')[:2] %}
+                            <span class="badge badge-info">{{ tag.strip() }}</span>
+                            {% endfor %}
+                            {% endif %}
+                        </td>
+                        <td>{{ post.views }}</td>
+                        <td>{{ post.created_at.strftime('%d.%m.%Y') }}</td>
+                        <td>
+                            {% if post.is_published %}
+                            <span class="badge badge-success">Опубліковано</span>
+                            {% else %}
+                            <span class="badge badge-warning">Чернетка</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div class="actions">
+                                <a href="{{ url_for('admin_blog_edit', post_id=post.id) }}" class="btn btn-sm btn-secondary">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                    </svg>
+                                </a>
+                                <form method="POST" action="{{ url_for('admin_blog_delete', post_id=post.id) }}" style="display: inline;" onsubmit="return confirm('Видалити цю статтю?');">
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="3 6 5 6 21 6"/>
+                                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                                        </svg>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+            </svg>
+            <h3>Статей поки немає</h3>
+            <p>Додайте першу статтю для блогу</p>
+            <a href="{{ url_for('admin_blog_add') }}" class="btn btn-primary" style="margin-top: 1rem;">Додати статтю</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+

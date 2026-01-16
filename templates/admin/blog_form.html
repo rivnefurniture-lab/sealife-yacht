@@ -1,0 +1,89 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}{{ 'Редагувати' if post else 'Додати' }} статтю{% endblock %}
+{% block page_title %}{{ 'Редагувати' if post else 'Додати' }} статтю{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <form method="POST" enctype="multipart/form-data">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="form-label">Заголовок (UA) *</label>
+                    <input type="text" name="title_uk" class="form-control" value="{{ post.title_uk if post else '' }}" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Заголовок (EN) *</label>
+                    <input type="text" name="title_en" class="form-control" value="{{ post.title_en if post else '' }}" required>
+                    <span class="form-hint">З цього буде згенеровано URL (slug)</span>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Короткий опис (UA)</label>
+                    <textarea name="excerpt_uk" class="form-control" rows="2">{{ post.excerpt_uk if post else '' }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Короткий опис (EN)</label>
+                    <textarea name="excerpt_en" class="form-control" rows="2">{{ post.excerpt_en if post else '' }}</textarea>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="form-label">Контент (UA) *</label>
+                    <textarea name="content_uk" class="form-control" rows="10" required>{{ post.content_uk if post else '' }}</textarea>
+                    <span class="form-hint">Підтримується HTML</span>
+                </div>
+                <div class="form-group full-width">
+                    <label class="form-label">Контент (EN) *</label>
+                    <textarea name="content_en" class="form-control" rows="10" required>{{ post.content_en if post else '' }}</textarea>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="form-label">Теги</label>
+                    <input type="text" name="tags" class="form-control" value="{{ post.tags if post else '' }}" placeholder="яхтинг, навчання, греція">
+                    <span class="form-hint">Через кому, для SEO та фільтрації</span>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Meta Description (UA)</label>
+                    <textarea name="meta_description_uk" class="form-control" rows="2" maxlength="160">{{ post.meta_description_uk if post else '' }}</textarea>
+                    <span class="form-hint">До 160 символів для SEO</span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Meta Description (EN)</label>
+                    <textarea name="meta_description_en" class="form-control" rows="2" maxlength="160">{{ post.meta_description_en if post else '' }}</textarea>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="form-label">Meta Keywords</label>
+                    <input type="text" name="meta_keywords" class="form-control" value="{{ post.meta_keywords if post else '' }}" placeholder="yacht school, sailing, greece">
+                    <span class="form-hint">Через кому, для SEO</span>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="form-label">Зображення</label>
+                    {% if post and post.image %}
+                    <div class="image-preview">
+                        <img src="{{ url_for('static', filename='uploads/' + post.image) }}" alt="Preview">
+                    </div>
+                    {% endif %}
+                    <input type="file" name="image" class="form-control" accept="image/*">
+                    <span class="form-hint">Рекомендований розмір: 1200x630px (для соц. мереж)</span>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="form-check">
+                        <input type="checkbox" name="is_published" {% if not post or post.is_published %}checked{% endif %}>
+                        Опублікувати (показувати на сайті)
+                    </label>
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                <button type="submit" class="btn btn-primary">Зберегти</button>
+                <a href="{{ url_for('admin_blog') }}" class="btn btn-secondary">Скасувати</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ 'Контакти' if lang == 'uk' else 'Contact' }} - Sea Life Yacht School{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="{{ url_for('home') }}">{{ 'Головна' if lang == 'uk' else 'Home' }}</a>
+            <span>/</span>
+            <span>{{ 'Контакти' if lang == 'uk' else 'Contact' }}</span>
+        </nav>
+        <h1>{{ 'Зв\'яжіться з нами' if lang == 'uk' else 'Contact Us' }}</h1>
+        <p>{{ 'Залиште заявку або напишіть нам напряму' if lang == 'uk' else 'Leave a request or write to us directly' }}</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="grid grid-2" style="gap: 4rem;">
+            <div>
+                <h2 style="margin-bottom: 1.5rem;">{{ 'Залишити заявку' if lang == 'uk' else 'Leave a Request' }}</h2>
+                <form method="POST" action="{{ url_for('contact') }}">
+                    <div class="form-group">
+                        <label class="form-label">{{ 'Ім\'я' if lang == 'uk' else 'Name' }} *</label>
+                        <input type="text" name="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email *</label>
+                        <input type="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">{{ 'Телефон' if lang == 'uk' else 'Phone' }}</label>
+                        <input type="tel" name="phone" class="form-control">
+                    </div>
+                    {% if trips %}
+                    <div class="form-group">
+                        <label class="form-label">{{ 'Цікавить курс/подорож' if lang == 'uk' else 'Interested in course/trip' }}</label>
+                        <select name="trip_id" class="form-control form-select">
+                            <option value="">{{ 'Оберіть...' if lang == 'uk' else 'Select...' }}</option>
+                            {% for trip in trips %}
+                            <option value="{{ trip.id }}" {% if request.args.get('trip') == trip.id|string %}selected{% endif %}>
+                                {{ trip.title_uk if lang == 'uk' else trip.title_en }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {% endif %}
+                    <div class="form-group">
+                        <label class="form-label">{{ 'Повідомлення' if lang == 'uk' else 'Message' }}</label>
+                        <textarea name="message" class="form-control" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        {{ 'Надіслати' if lang == 'uk' else 'Send' }}
+                    </button>
+                </form>
+            </div>
+            
+            <div>
+                <h2 style="margin-bottom: 1.5rem;">{{ 'Контактна інформація' if lang == 'uk' else 'Contact Information' }}</h2>
+                
+                <div style="margin-bottom: 2rem;">
+                    <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="width: 50px; height: 50px; background: var(--primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 style="margin-bottom: 0.25rem;">{{ 'Локація' if lang == 'uk' else 'Location' }}</h4>
+                            <p style="color: var(--gray-500); margin: 0;">{{ 'Греція, Афіни' if lang == 'uk' else 'Greece, Athens' }}</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="width: 50px; height: 50px; background: var(--primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 style="margin-bottom: 0.25rem;">Email</h4>
+                            <p style="color: var(--gray-500); margin: 0;">info@sealife.school</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 1rem;">
+                        <div style="width: 50px; height: 50px; background: #0088cc; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.324-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.1.154.234.169.33.015.097.034.318.019.49z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 style="margin-bottom: 0.25rem;">Telegram</h4>
+                            <p style="margin: 0;"><a href="https://t.me/sealife_yacht" target="_blank" style="color: #0088cc;">@sealife_yacht</a></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: var(--off-white); padding: 2rem; border-radius: 12px; margin-top: 2rem;">
+                    <h3 style="margin-bottom: 1rem;">{{ 'Швидкий зв\'язок' if lang == 'uk' else 'Quick Contact' }}</h3>
+                    <p style="color: var(--gray-500); margin-bottom: 1.5rem;">{{ 'Напишіть нам в Telegram — відповідаємо протягом години' if lang == 'uk' else 'Write to us on Telegram — we respond within an hour' }}</p>
+                    <a href="https://t.me/sealife_yacht" target="_blank" class="btn btn-primary btn-lg" style="width: 100%;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.324-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.1.154.234.169.33.015.097.034.318.019.49z"/>
+                        </svg>
+                        {{ 'Написати в Telegram' if lang == 'uk' else 'Message on Telegram' }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

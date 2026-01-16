@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ 'Галерея' if lang == 'uk' else 'Gallery' }} - Sea Life Yacht School{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="{{ url_for('home') }}">{{ 'Головна' if lang == 'uk' else 'Home' }}</a>
+            <span>/</span>
+            <span>{{ 'Галерея' if lang == 'uk' else 'Gallery' }}</span>
+        </nav>
+        <h1>{{ 'Галерея' if lang == 'uk' else 'Gallery' }}</h1>
+        <p>{{ 'Моменти з наших подорожей та навчання' if lang == 'uk' else 'Moments from our trips and training' }}</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="filters">
+            <a href="{{ url_for('gallery', category='all') }}" class="filter-btn {% if current_category == 'all' %}active{% endif %}">
+                {{ 'Всі' if lang == 'uk' else 'All' }}
+            </a>
+            <a href="{{ url_for('gallery', category='trips') }}" class="filter-btn {% if current_category == 'trips' %}active{% endif %}">
+                {{ 'Подорожі' if lang == 'uk' else 'Trips' }}
+            </a>
+            <a href="{{ url_for('gallery', category='courses') }}" class="filter-btn {% if current_category == 'courses' %}active{% endif %}">
+                {{ 'Курси' if lang == 'uk' else 'Courses' }}
+            </a>
+            <a href="{{ url_for('gallery', category='lifestyle') }}" class="filter-btn {% if current_category == 'lifestyle' %}active{% endif %}">
+                {{ 'Життя на яхті' if lang == 'uk' else 'Yacht Life' }}
+            </a>
+        </div>
+        
+        {% if items %}
+        <div class="gallery-grid">
+            {% for item in items %}
+            <div class="gallery-item" onclick="openLightbox('{{ url_for('static', filename='uploads/' + item.image) }}', '{{ item.caption_uk if lang == 'uk' else item.caption_en }}')">
+                <img src="{{ url_for('static', filename='uploads/' + item.image) }}" alt="{{ item.caption_uk if lang == 'uk' else item.caption_en }}" loading="lazy">
+                <div class="gallery-item-overlay">
+                    <span class="gallery-item-caption">{{ item.caption_uk if lang == 'uk' else item.caption_en }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center" style="padding: 4rem;">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--gray-300)" stroke-width="1.5" style="margin-bottom: 1rem;">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+            </svg>
+            <h3 style="color: var(--gray-500); margin-bottom: 0.5rem;">{{ 'Галерея поки порожня' if lang == 'uk' else 'Gallery is empty' }}</h3>
+            <p class="text-muted">{{ 'Скоро тут з\'являться фото з наших подорожей' if lang == 'uk' else 'Photos from our trips coming soon' }}</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 9999; align-items: center; justify-content: center; cursor: pointer;" onclick="closeLightbox()">
+    <button onclick="closeLightbox()" style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: white; font-size: 2rem; cursor: pointer;">&times;</button>
+    <img id="lightbox-img" src="" alt="" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+    <p id="lightbox-caption" style="position: absolute; bottom: 20px; color: white; text-align: center; width: 100%;"></p>
+</div>
+
+{% block extra_js %}
+<script>
+function openLightbox(src, caption) {
+    document.getElementById('lightbox').style.display = 'flex';
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox-caption').textContent = caption || '';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+    document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLightbox();
+});
+</script>
+{% endblock %}
+{% endblock %}
+

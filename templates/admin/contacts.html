@@ -1,0 +1,73 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Заявки{% endblock %}
+{% block page_title %}Заявки{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>Всі заявки</h2>
+    </div>
+    <div class="card-body">
+        {% if contacts %}
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Ім'я</th>
+                        <th>Email</th>
+                        <th>Телефон</th>
+                        <th>Повідомлення</th>
+                        <th>Дата</th>
+                        <th>Статус</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contact in contacts %}
+                    <tr>
+                        <td>{{ contact.name or '—' }}</td>
+                        <td><a href="mailto:{{ contact.email }}">{{ contact.email or '—' }}</a></td>
+                        <td>{{ contact.phone or '—' }}</td>
+                        <td style="max-width: 300px;">{{ contact.message[:100] + '...' if contact.message and contact.message|length > 100 else contact.message or '—' }}</td>
+                        <td>{{ contact.created_at.strftime('%d.%m.%Y %H:%M') }}</td>
+                        <td>
+                            {% if contact.is_read %}
+                            <span class="badge badge-success">Прочитано</span>
+                            {% else %}
+                            <span class="badge badge-warning">Нова</span>
+                            <button onclick="markAsRead({{ contact.id }})" class="btn btn-sm btn-secondary" style="margin-left: 0.5rem;">
+                                Прочитано
+                            </button>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            <h3>Заявок поки немає</h3>
+            <p>Нові заявки з сайту з'являться тут</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+function markAsRead(id) {
+    fetch('/admin/contacts/mark-read/' + id, { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            }
+        });
+}
+</script>
+{% endblock %}
+

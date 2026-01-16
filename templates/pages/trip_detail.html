@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ trip.title_uk if lang == 'uk' else trip.title_en }} - Sea Life Yacht School{% endblock %}
+
+{% block content %}
+<section class="trip-detail-hero">
+    {% if trip.image %}
+    <img src="{{ url_for('static', filename='uploads/' + trip.image) }}" alt="{{ trip.title_uk if lang == 'uk' else trip.title_en }}">
+    {% else %}
+    <img src="https://images.unsplash.com/photo-1500514966906-fe245eea9344?w=1920&q=80" alt="Yacht">
+    {% endif %}
+    <div class="trip-detail-hero-overlay"></div>
+    <div class="trip-detail-hero-content">
+        <div class="container">
+            <nav class="breadcrumb" style="justify-content: flex-start; margin-bottom: 1rem;">
+                <a href="{{ url_for('home') }}" style="color: rgba(255,255,255,0.7);">{{ 'Головна' if lang == 'uk' else 'Home' }}</a>
+                <span style="color: rgba(255,255,255,0.5);">/</span>
+                <a href="{{ url_for('trips') }}" style="color: rgba(255,255,255,0.7);">{{ 'Курси та подорожі' if lang == 'uk' else 'Courses & Trips' }}</a>
+                <span style="color: rgba(255,255,255,0.5);">/</span>
+                <span style="color: white;">{{ trip.title_uk if lang == 'uk' else trip.title_en }}</span>
+            </nav>
+            <span class="trip-card-badge" style="margin-bottom: 1rem; display: inline-block;">{{ trip.trip_type }}</span>
+            <h1 style="color: white; font-size: 2.5rem;">{{ trip.title_uk if lang == 'uk' else trip.title_en }}</h1>
+            <div style="display: flex; gap: 2rem; margin-top: 1rem; color: rgba(255,255,255,0.8);">
+                <span style="display: flex; align-items: center; gap: 0.5rem;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                    {{ trip.start_date.strftime('%d.%m') }} - {{ trip.end_date.strftime('%d.%m.%Y') }}
+                </span>
+                <span style="display: flex; align-items: center; gap: 0.5rem;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    {{ trip.location_uk if lang == 'uk' else trip.location_en }}
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" style="padding-top: 3rem;">
+    <div class="container">
+        <div class="trip-detail-content">
+            <div class="trip-detail-main">
+                <h2>{{ 'Опис' if lang == 'uk' else 'Description' }}</h2>
+                <div style="color: var(--gray-600); line-height: 1.8; margin-bottom: 2rem;">
+                    {{ (trip.description_uk if lang == 'uk' else trip.description_en)|safe or 'Детальний опис буде додано найближчим часом.' }}
+                </div>
+                
+                {% if trip.highlights_uk or trip.highlights_en %}
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">{{ 'Що вас чекає' if lang == 'uk' else 'What to expect' }}</h3>
+                <div style="color: var(--gray-600); line-height: 1.8;">
+                    {{ (trip.highlights_uk if lang == 'uk' else trip.highlights_en)|safe }}
+                </div>
+                {% endif %}
+                
+                {% if trip.included_uk or trip.included_en %}
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">{{ 'Що включено' if lang == 'uk' else 'What\'s included' }}</h3>
+                <div style="color: var(--gray-600); line-height: 1.8;">
+                    {{ (trip.included_uk if lang == 'uk' else trip.included_en)|safe }}
+                </div>
+                {% endif %}
+            </div>
+            
+            <aside class="trip-detail-sidebar">
+                <div class="trip-booking-card">
+                    <div class="trip-booking-price">
+                        {% if trip.has_active_discount() %}
+                        <div class="old-price">€{{ trip.price|int }}</div>
+                        <div style="background: #EF4444; color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; display: inline-block; margin-bottom: 0.5rem;">-{{ trip.discount_percent }}% {{ 'до' if lang == 'uk' else 'until' }} {{ trip.discount_until.strftime('%d.%m') }}</div>
+                        {% endif %}
+                        <div class="current-price">€{{ trip.get_current_price()|int }}</div>
+                        <div class="per-person">{{ 'за особу' if lang == 'uk' else 'per person' }}</div>
+                    </div>
+                    
+                    <div class="trip-info-list">
+                        <div class="trip-info-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                <line x1="16" y1="2" x2="16" y2="6"/>
+                                <line x1="8" y1="2" x2="8" y2="6"/>
+                                <line x1="3" y1="10" x2="21" y2="10"/>
+                            </svg>
+                            <div>
+                                <span>{{ 'Дати' if lang == 'uk' else 'Dates' }}</span><br>
+                                <strong>{{ trip.start_date.strftime('%d.%m') }} - {{ trip.end_date.strftime('%d.%m.%Y') }}</strong>
+                            </div>
+                        </div>
+                        <div class="trip-info-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <div>
+                                <span>{{ 'Локація' if lang == 'uk' else 'Location' }}</span><br>
+                                <strong>{{ trip.location_uk if lang == 'uk' else trip.location_en }}</strong>
+                            </div>
+                        </div>
+                        <div class="trip-info-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                            <div>
+                                <span>{{ 'Макс. учасників' if lang == 'uk' else 'Max participants' }}</span><br>
+                                <strong>{{ trip.max_participants }} {{ 'осіб' if lang == 'uk' else 'people' }}</strong>
+                            </div>
+                        </div>
+                        {% if trip.difficulty %}
+                        <div class="trip-info-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                            </svg>
+                            <div>
+                                <span>{{ 'Рівень' if lang == 'uk' else 'Level' }}</span><br>
+                                <strong>{{ trip.difficulty }}</strong>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <a href="https://t.me/sealife_yacht?text={{ ('Вітаю! Мене цікавить: ' + trip.title_uk)|urlencode if lang == 'uk' else ('Hello! I am interested in: ' + trip.title_en)|urlencode }}" 
+                       target="_blank" 
+                       class="btn btn-primary btn-lg" 
+                       style="width: 100%; margin-bottom: 0.75rem;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.324-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.1.154.234.169.33.015.097.034.318.019.49z"/>
+                        </svg>
+                        {{ 'Запит в Telegram' if lang == 'uk' else 'Request via Telegram' }}
+                    </a>
+                    
+                    <a href="{{ url_for('contact') }}?trip={{ trip.id }}" class="btn btn-outline" style="width: 100%;">
+                        {{ 'Залишити заявку' if lang == 'uk' else 'Leave a Request' }}
+                    </a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+
+{% if related %}
+<section class="section" style="background: var(--off-white);">
+    <div class="container">
+        <h2 style="text-align: center; margin-bottom: 2rem;">{{ 'Інші пропозиції' if lang == 'uk' else 'Other Offers' }}</h2>
+        <div class="grid grid-3">
+            {% for r in related %}
+            <article class="trip-card">
+                <div class="trip-card-image">
+                    {% if r.image %}
+                    <img src="{{ url_for('static', filename='uploads/' + r.image) }}" alt="{{ r.title_uk if lang == 'uk' else r.title_en }}">
+                    {% else %}
+                    <img src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=600&q=80" alt="Yacht">
+                    {% endif %}
+                    <span class="trip-card-badge">{{ r.trip_type }}</span>
+                </div>
+                <div class="trip-card-body">
+                    <h3><a href="{{ url_for('trip_detail', trip_id=r.id) }}">{{ r.title_uk if lang == 'uk' else r.title_en }}</a></h3>
+                    <div class="trip-card-footer">
+                        <div class="trip-card-price">
+                            <span class="current-price">€{{ r.get_current_price()|int }}</span>
+                        </div>
+                        <a href="{{ url_for('trip_detail', trip_id=r.id) }}" class="btn btn-sm btn-outline">
+                            {{ 'Детальніше' if lang == 'uk' else 'Details' }}
+                        </a>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}
+

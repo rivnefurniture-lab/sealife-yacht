@@ -1,0 +1,302 @@
+{% extends 'base.html' %}
+
+{% block title %}Sea Life Yacht School - {{ 'Школа яхтингу та морські подорожі' if lang == 'uk' else 'Yacht School & Sea Adventures' }}{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-bg">
+        <img src="https://images.unsplash.com/photo-1500514966906-fe245eea9344?w=1920&q=80" alt="Yacht sailing">
+    </div>
+    <div class="hero-overlay"></div>
+    
+    <div class="container">
+        <div class="hero-content animate-slide-up">
+            <div class="hero-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                </svg>
+                {{ 'Школа яхтингу в Греції' if lang == 'uk' else 'Yacht School in Greece' }}
+            </div>
+            
+            <h1>{{ 'Відкрийте світ вітрильного спорту' if lang == 'uk' else 'Discover the World of Sailing' }}</h1>
+            
+            <p>{{ 'Навчання яхтингу від сертифікованих інструкторів та незабутні морські подорожі Середземномор\'ям. Ваша пригода починається тут.' if lang == 'uk' else 'Yacht training from certified instructors and unforgettable sea adventures in the Mediterranean. Your adventure starts here.' }}</p>
+            
+            <div class="hero-buttons">
+                <a href="{{ url_for('trips') }}" class="btn btn-primary btn-lg">
+                    {{ 'Переглянути курси' if lang == 'uk' else 'View Courses' }}
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="{{ url_for('contact') }}" class="btn btn-outline btn-lg" style="border-color: white; color: white;">
+                    {{ 'Зв\'язатися' if lang == 'uk' else 'Contact Us' }}
+                </a>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-number">500+</div>
+                    <div class="hero-stat-label">{{ 'Випускників' if lang == 'uk' else 'Graduates' }}</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">10+</div>
+                    <div class="hero-stat-label">{{ 'Років досвіду' if lang == 'uk' else 'Years Experience' }}</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">50+</div>
+                    <div class="hero-stat-label">{{ 'Маршрутів' if lang == 'uk' else 'Routes' }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="hero-decor">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="47" stroke="#E8A838" stroke-width="2"/>
+            <path d="M50 15 L50 70 M25 70 L75 70 M50 15 L25 70 M50 15 L75 70" stroke="#E8A838" stroke-width="2"/>
+        </svg>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="section about-section">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80" alt="Yacht sailing">
+                <div class="about-image-badge">
+                    <span class="number">10+</span>
+                    <span class="text">{{ 'років' if lang == 'uk' else 'years' }}</span>
+                </div>
+            </div>
+            
+            <div class="about-content">
+                <h2>{{ 'Про Sea Life Yacht School' if lang == 'uk' else 'About Sea Life Yacht School' }}</h2>
+                <p>{{ 'Sea Life — це більше ніж школа яхтингу. Це спільнота людей, які закохані в море та вітрильний спорт. Ми пропонуємо професійне навчання за міжнародними стандартами та організовуємо незабутні морські подорожі.' if lang == 'uk' else 'Sea Life is more than a yacht school. It\'s a community of people who are in love with the sea and sailing. We offer professional training according to international standards and organize unforgettable sea adventures.' }}</p>
+                <p>{{ 'Наші інструктори мають багаторічний досвід та міжнародні сертифікати. Ми навчаємо на сучасних яхтах в найкращих акваторіях Греції.' if lang == 'uk' else 'Our instructors have many years of experience and international certificates. We train on modern yachts in the best waters of Greece.' }}</p>
+                
+                <div class="about-features">
+                    <div class="about-feature">
+                        <div class="about-feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22 4 12 14.01 9 11.01"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>{{ 'Сертифіковані курси' if lang == 'uk' else 'Certified Courses' }}</h4>
+                            <p>{{ 'Міжнародні ліцензії IYT' if lang == 'uk' else 'International IYT licenses' }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="about-feature">
+                        <div class="about-feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>{{ 'Греція' if lang == 'uk' else 'Greece' }}</h4>
+                            <p>{{ 'Найкращі акваторії Середземномор\'я' if lang == 'uk' else 'Best Mediterranean waters' }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="about-feature">
+                        <div class="about-feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>{{ 'Малі групи' if lang == 'uk' else 'Small Groups' }}</h4>
+                            <p>{{ 'До 6 осіб на курсі' if lang == 'uk' else 'Up to 6 people per course' }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="about-feature">
+                        <div class="about-feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>{{ 'Сучасні яхти' if lang == 'uk' else 'Modern Yachts' }}</h4>
+                            <p>{{ 'Bavaria, Jeanneau, Beneteau' if lang == 'uk' else 'Bavaria, Jeanneau, Beneteau' }}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="{{ url_for('about') }}" class="btn btn-primary mt-2">
+                    {{ 'Дізнатися більше' if lang == 'uk' else 'Learn More' }}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trips Section -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2>{{ 'Курси та подорожі' if lang == 'uk' else 'Courses & Trips' }}</h2>
+            <p>{{ 'Оберіть свою пригоду — від навчальних курсів до захоплюючих морських експедицій' if lang == 'uk' else 'Choose your adventure — from training courses to exciting sea expeditions' }}</p>
+        </div>
+        
+        <div class="grid grid-3">
+            {% for trip in trips %}
+            <article class="trip-card">
+                <div class="trip-card-image">
+                    {% if trip.image %}
+                    <img src="{{ url_for('static', filename='uploads/' + trip.image) }}" alt="{{ trip.title_uk if lang == 'uk' else trip.title_en }}">
+                    {% else %}
+                    <img src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=600&q=80" alt="Yacht">
+                    {% endif %}
+                    <span class="trip-card-badge">{{ trip.trip_type }}</span>
+                    {% if trip.has_active_discount() %}
+                    <span class="trip-card-discount">-{{ trip.discount_percent }}%</span>
+                    {% endif %}
+                </div>
+                <div class="trip-card-body">
+                    <div class="trip-card-meta">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                        {{ trip.start_date.strftime('%d.%m') }} - {{ trip.end_date.strftime('%d.%m.%Y') }}
+                    </div>
+                    <h3><a href="{{ url_for('trip_detail', trip_id=trip.id) }}">{{ trip.title_uk if lang == 'uk' else trip.title_en }}</a></h3>
+                    <div class="trip-card-location">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        {{ trip.location_uk if lang == 'uk' else trip.location_en }}
+                    </div>
+                    <div class="trip-card-footer">
+                        <div class="trip-card-price">
+                            {% if trip.has_active_discount() %}
+                            <span class="old-price">€{{ trip.price|int }}</span>
+                            {% endif %}
+                            <span class="current-price">€{{ trip.get_current_price()|int }}</span>
+                        </div>
+                        <a href="{{ url_for('trip_detail', trip_id=trip.id) }}" class="btn btn-sm btn-outline">
+                            {{ 'Детальніше' if lang == 'uk' else 'Details' }}
+                        </a>
+                    </div>
+                </div>
+            </article>
+            {% else %}
+            <div class="text-center" style="grid-column: 1/-1; padding: 3rem;">
+                <p class="text-muted">{{ 'Скоро тут з\'являться нові курси та подорожі' if lang == 'uk' else 'New courses and trips coming soon' }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-3">
+            <a href="{{ url_for('trips') }}" class="btn btn-primary btn-lg">
+                {{ 'Всі курси та подорожі' if lang == 'uk' else 'All Courses & Trips' }}
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Section -->
+{% if gallery %}
+<section class="section" style="background: var(--off-white);">
+    <div class="container">
+        <div class="section-header">
+            <h2>{{ 'Галерея' if lang == 'uk' else 'Gallery' }}</h2>
+            <p>{{ 'Моменти з наших подорожей та навчання' if lang == 'uk' else 'Moments from our trips and training' }}</p>
+        </div>
+        
+        <div class="gallery-grid">
+            {% for item in gallery %}
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='uploads/' + item.image) }}" alt="{{ item.caption_uk if lang == 'uk' else item.caption_en }}">
+                <div class="gallery-item-overlay">
+                    <span class="gallery-item-caption">{{ item.caption_uk if lang == 'uk' else item.caption_en }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-3">
+            <a href="{{ url_for('gallery') }}" class="btn btn-outline">
+                {{ 'Вся галерея' if lang == 'uk' else 'Full Gallery' }}
+            </a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Blog Section -->
+{% if posts %}
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2>{{ 'Блог' if lang == 'uk' else 'Blog' }}</h2>
+            <p>{{ 'Корисні статті про яхтинг та морські подорожі' if lang == 'uk' else 'Useful articles about yachting and sea travel' }}</p>
+        </div>
+        
+        <div class="grid grid-3">
+            {% for post in posts %}
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    {% if post.image %}
+                    <img src="{{ url_for('static', filename='uploads/' + post.image) }}" alt="{{ post.title_uk if lang == 'uk' else post.title_en }}">
+                    {% else %}
+                    <img src="https://images.unsplash.com/photo-1559827291-72ee739d0d9a?w=600&q=80" alt="Blog">
+                    {% endif %}
+                </div>
+                <div class="blog-card-body">
+                    <div class="blog-card-date">{{ post.created_at.strftime('%d %B %Y') }}</div>
+                    <h3><a href="{{ url_for('blog_post', slug=post.slug) }}">{{ post.title_uk if lang == 'uk' else post.title_en }}</a></h3>
+                    <p>{{ (post.excerpt_uk if lang == 'uk' else post.excerpt_en) or '' }}</p>
+                    {% if post.tags %}
+                    <div class="blog-card-tags">
+                        {% for tag in post.tags.split(',')[:3] %}
+                        <a href="{{ url_for('blog', tag=tag.strip()) }}" class="blog-card-tag">{{ tag.strip() }}</a>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-3">
+            <a href="{{ url_for('blog') }}" class="btn btn-outline">
+                {{ 'Всі статті' if lang == 'uk' else 'All Articles' }}
+            </a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- CTA Section -->
+<section class="section cta-section">
+    <div class="container">
+        <h2>{{ 'Готові до пригоди?' if lang == 'uk' else 'Ready for Adventure?' }}</h2>
+        <p>{{ 'Залиште заявку і ми допоможемо обрати ідеальний курс або подорож для вас' if lang == 'uk' else 'Leave a request and we will help you choose the perfect course or trip for you' }}</p>
+        <div class="hero-buttons" style="justify-content: center;">
+            <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">
+                {{ 'Залишити заявку' if lang == 'uk' else 'Leave a Request' }}
+            </a>
+            <a href="https://t.me/sealife_yacht" target="_blank" class="btn btn-white btn-lg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.324-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.1.154.234.169.33.015.097.034.318.019.49z"/>
+                </svg>
+                {{ 'Написати в Telegram' if lang == 'uk' else 'Message on Telegram' }}
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
