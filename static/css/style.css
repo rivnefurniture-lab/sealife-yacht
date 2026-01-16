@@ -925,6 +925,16 @@ p {
     border: 2px solid var(--primary);
     border-radius: 50%;
     opacity: 0.1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.cta-section h2,
+.cta-section p,
+.cta-section .hero-buttons,
+.cta-section .btn {
+    position: relative;
+    z-index: 1;
 }
 
 .cta-section h2 {
