@@ -21,15 +21,15 @@
             <div class="about-image">
                 <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80" alt="Sea Life Team">
                 <div class="about-image-badge">
-                    <span class="number">10+</span>
+                    <span class="number">15+</span>
                     <span class="text">{{ 'років' if lang == 'uk' else 'years' }}</span>
                 </div>
             </div>
-            
+
             <div class="about-content">
                 <h2>{{ 'Наша історія' if lang == 'uk' else 'Our Story' }}</h2>
-                <p>{{ 'Sea Life Yacht School — це більше ніж школа яхтингу. Це спільнота людей, які закохані в море та вітрильний спорт. Ми почали свій шлях понад 10 років тому з простої ідеї — зробити яхтинг доступним для кожного.' if lang == 'uk' else 'Sea Life Yacht School is more than just a yacht school. It\'s a community of people who are in love with the sea and sailing. We started our journey over 10 years ago with a simple idea — to make yachting accessible to everyone.' }}</p>
-                <p>{{ 'Сьогодні ми пропонуємо професійне навчання за міжнародними стандартами IYT та організовуємо незабутні морські подорожі Адріатикою. Наша база знаходиться в Чорногорії — країні з ідеальними умовами для яхтингу.' if lang == 'uk' else 'Today we offer professional training according to international IYT standards and organize unforgettable sea adventures in the Adriatic. Our base is located in Montenegro — a country with ideal conditions for yachting.' }}</p>
+                <p>{{ 'Sea Life Yacht School — це більше ніж школа яхтингу. Це спільнота людей, які закохані в море та вітрила, людей, які цінують свободу і відповідальність, людей, які йдуть за своєю мрією. Ми почали свій шлях понад 15 років тому з простої ідеї — зробити яхтинг доступним для кожного.' if lang == 'uk' else 'Sea Life Yacht School is more than just a yacht school. It\'s a community of people who are in love with the sea and sails, people who value freedom and responsibility, people who follow their dreams. We started our journey over 15 years ago with a simple idea — to make yachting accessible to everyone.' }}</p>
+                <p>{{ 'Сьогодні ми пропонуємо професійне навчання за міжнародними стандартами IYT та організовуємо незабутні морські подорожі Середземкою та іншими регіонами. Наша основна база знаходиться в Чорногорії, але навчання не обмежується лише цією акваторією, а подорожі – взагалі не мають меж!' if lang == 'uk' else 'Today we offer professional training according to international IYT standards and organize unforgettable sea adventures in the Mediterranean and other regions. Our main base is in Montenegro, but training is not limited to these waters, and trips have no limits at all!' }}</p>
             </div>
         </div>
     </div>
@@ -40,8 +40,8 @@
         <div class="section-header">
             <h2>{{ 'Чому обирають нас' if lang == 'uk' else 'Why Choose Us' }}</h2>
         </div>
-        
-        <div class="grid grid-4">
+
+        <div class="grid grid-3">
             <div class="about-feature" style="flex-direction: column; text-align: center;">
                 <div class="about-feature-icon" style="margin: 0 auto 1rem;">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -49,10 +49,10 @@
                         <polyline points="22 4 12 14.01 9 11.01"/>
                     </svg>
                 </div>
-                <h4>{{ 'Сертифіковані курси' if lang == 'uk' else 'Certified Courses' }}</h4>
-                <p>{{ 'Міжнародні ліцензії IYT, визнані по всьому світу' if lang == 'uk' else 'International IYT licenses recognized worldwide' }}</p>
+                <h4>{{ 'Міжнародний сертифікат IYT' if lang == 'uk' else 'International IYT Certificate' }}</h4>
+                <p>{{ 'Навчання з нуля від початківця International Flotilla Skipper до фахівця високого класу Yachtmaster Offshore' if lang == 'uk' else 'Training from beginner International Flotilla Skipper to advanced Yachtmaster Offshore' }}</p>
             </div>
-            
+
             <div class="about-feature" style="flex-direction: column; text-align: center;">
                 <div class="about-feature-icon" style="margin: 0 auto 1rem;">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -61,29 +61,52 @@
                         <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
                     </svg>
                 </div>
-                <h4>{{ 'Досвідчені інструктори' if lang == 'uk' else 'Experienced Instructors' }}</h4>
-                <p>{{ 'Багаторічний досвід та міжнародні сертифікати' if lang == 'uk' else 'Years of experience and international certificates' }}</p>
+                <h4>{{ 'Малі групи' if lang == 'uk' else 'Small Groups' }}</h4>
+                <p>{{ 'До 6 людей на курсі' if lang == 'uk' else 'Up to 6 people per course' }}</p>
             </div>
-            
+
             <div class="about-feature" style="flex-direction: column; text-align: center;">
                 <div class="about-feature-icon" style="margin: 0 auto 1rem;">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
                     </svg>
                 </div>
-                <h4>{{ 'Чорногорія' if lang == 'uk' else 'Montenegro' }}</h4>
-                <p>{{ 'Найкращі акваторії Середземномор\'я для навчання' if lang == 'uk' else 'Best Mediterranean waters for training' }}</p>
+                <h4>{{ 'Повний практичний курс' if lang == 'uk' else 'Full Practical Course' }}</h4>
+                <p>{{ 'За 2 тижні' if lang == 'uk' else 'In 2 weeks' }}</p>
             </div>
-            
+
+            <div class="about-feature" style="flex-direction: column; text-align: center;">
+                <div class="about-feature-icon" style="margin: 0 auto 1rem;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                    </svg>
+                </div>
+                <h4>{{ 'Інтенсивний курс' if lang == 'uk' else 'Intensive Course' }}</h4>
+                <p>{{ 'Найпрактичніші навички за 10 днів' if lang == 'uk' else 'Most practical skills in 10 days' }}</p>
+            </div>
+
             <div class="about-feature" style="flex-direction: column; text-align: center;">
                 <div class="about-feature-icon" style="margin: 0 auto 1rem;">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                     </svg>
                 </div>
-                <h4>{{ 'Сучасні яхти' if lang == 'uk' else 'Modern Yachts' }}</h4>
-                <p>{{ 'Bavaria, Jeanneau, Beneteau — найкращі виробники' if lang == 'uk' else 'Bavaria, Jeanneau, Beneteau — top manufacturers' }}</p>
+                <h4>{{ 'Курс по катамаранах' if lang == 'uk' else 'Catamaran Course' }}</h4>
+                <p>{{ '3 дні тільки практики' if lang == 'uk' else '3 days of pure practice' }}</p>
+            </div>
+
+            <div class="about-feature" style="flex-direction: column; text-align: center;">
+                <div class="about-feature-icon" style="margin: 0 auto 1rem;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                </div>
+                <h4>{{ 'Додаткові практичні курси' if lang == 'uk' else 'Additional Practical Courses' }}</h4>
+                <p>{{ 'Майстер швартовки та інші' if lang == 'uk' else 'Mooring master and others' }}</p>
             </div>
         </div>
     </div>

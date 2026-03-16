@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ 'Яхтинг спільнота' if lang == 'uk' else 'Yachting Community' }} - Sea Life Yacht School{% endblock %}
+{% block meta_description %}{{ 'Долучайся до спільноти яхтсменів Sea Life! Новини, поради, маршрути та живе спілкування в Telegram.' if lang == 'uk' else 'Join the Sea Life yachting community! News, tips, routes and live chat on Telegram.' }}{% endblock %}
+
+{% block content %}
+<section class="community-hero">
+    <div class="community-bg">
+        <img src="https://images.unsplash.com/photo-1500514966906-fe245eea9344?w=1920&q=80" alt="Yachting community">
+    </div>
+    <div class="community-overlay"></div>
+
+    <div class="container">
+        <div class="community-content animate-slide-up">
+            <div class="hero-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.324-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.1.154.234.169.33.015.097.034.318.019.49z"/>
+                </svg>
+                Telegram
+            </div>
+
+            <h1>{{ 'Яхтинг спільнота' if lang == 'uk' else 'Yachting Community' }}</h1>
+
+            <p class="community-subtitle">{{ 'Цікавий канал про яхтинг, де ми ділимось досвідом, новинами, маршрутами та натхненням для морських пригод. Долучайся до нашої спільноти!' if lang == 'uk' else 'An exciting yachting channel where we share experience, news, routes and inspiration for sea adventures. Join our community!' }}</p>
+
+            <div class="community-features">
+                <div class="community-feature">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    <span>{{ 'Маршрути та поради' if lang == 'uk' else 'Routes & tips' }}</span>
+                </div>
+                <div class="community-feature">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    <span>{{ 'Спільнота яхтсменів' if lang == 'uk' else 'Yachting community' }}</span>
+                </div>
+                <div class="community-feature">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                    <span>{{ 'Анонси курсів та подорожей' if lang == 'uk' else 'Course & trip announcements' }}</span>
+                </div>
+            </div>
+
+            <a href="https://t.me/{{ config.get('TG_CHANNEL', 'sealife_yachtschool') }}" target="_blank" class="btn btn-community-cta btn-lg community-cta-pulse">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.324-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.1.154.234.169.33.015.097.034.318.019.49z"/>
+                </svg>
+                {{ 'ТИСНИ, ЩОБ ДОЛУЧИТИСЯ ДО СПІЛЬНОТИ' if lang == 'uk' else 'JOIN THE COMMUNITY' }}
+            </a>
+
+            <p class="community-note">{{ 'Безкоштовно. Без спаму. Тільки яхтинг.' if lang == 'uk' else 'Free. No spam. Only yachting.' }}</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -9,7 +9,7 @@
         <img src="https://images.unsplash.com/photo-1500514966906-fe245eea9344?w=1920&q=80" alt="Yacht sailing">
     </div>
     <div class="hero-overlay"></div>
-    
+
     <div class="container">
         <div class="hero-content animate-slide-up">
             <div class="hero-badge">
@@ -18,11 +18,31 @@
                 </svg>
                 {{ 'Школа яхтингу в Чорногорії' if lang == 'uk' else 'Yacht School in Montenegro' }}
             </div>
-            
-            <h1>{{ 'Відкрийте світ вітрильного спорту' if lang == 'uk' else 'Discover the World of Sailing' }}</h1>
-            
-            <p>{{ 'Навчання яхтингу від сертифікованих інструкторів та незабутні морські подорожі Середземномор\'ям. Ваша пригода починається тут.' if lang == 'uk' else 'Yacht training from certified instructors and unforgettable sea adventures in the Mediterranean. Your adventure starts here.' }}</p>
-            
+
+            <h1>{{ 'Відкрий світ вітрильного відпочинку' if lang == 'uk' else 'Discover the World of Sailing Leisure' }}</h1>
+
+            <p>{{ 'Навчання яхтингу від сертифікованих інструкторів IYT та незабутні морські подорожі Середземномор\'ям. Ваша пригода починається тут.' if lang == 'uk' else 'Yacht training from certified IYT instructors and unforgettable sea adventures in the Mediterranean. Your adventure starts here.' }}</p>
+
+            <!-- Pros & Cons -->
+            <div class="hero-pros-cons">
+                <div class="hero-pros">
+                    <h3>{{ 'Плюси' if lang == 'uk' else 'Pros' }}</h3>
+                    <ul>
+                        <li>{{ 'Міжнародний сертифікат шкіпера, що приймають у всьому Світі' if lang == 'uk' else 'International skipper certificate recognized worldwide' }}</li>
+                        <li>{{ 'Самостійна оренда та керування яхтами та катамаранами' if lang == 'uk' else 'Independent charter and operation of yachts and catamarans' }}</li>
+                        <li>{{ 'Вміння користуватися VHF-радіозв\'язком' if lang == 'uk' else 'VHF radio communication skills' }}</li>
+                    </ul>
+                </div>
+                <div class="hero-cons">
+                    <h3>{{ 'Мінуси' if lang == 'uk' else 'Cons' }}</h3>
+                    <ul>
+                        <li>{{ 'Ти більше не схочеш відпочивати в готелях' if lang == 'uk' else 'You won\'t want to stay in hotels anymore' }}</li>
+                        <li>{{ 'Якщо яхтинг заважатиме роботі, ти радше кинеш роботу ніж яхтинг' if lang == 'uk' else 'If yachting interferes with work, you\'ll quit work before yachting' }}</li>
+                        <li>{{ 'Тебе перестануть розуміти «друзі», що не ходять з тобою в море' if lang == 'uk' else 'Friends who don\'t sail with you will stop understanding you' }}</li>
+                    </ul>
+                </div>
+            </div>
+
             <div class="hero-buttons">
                 <a href="{{ url_for('trips') }}" class="btn btn-primary btn-lg">
                     {{ 'Переглянути курси' if lang == 'uk' else 'View Courses' }}
@@ -34,24 +54,24 @@
                     {{ 'Зв\'язатися' if lang == 'uk' else 'Contact Us' }}
                 </a>
             </div>
-            
+
             <div class="hero-stats">
                 <div class="hero-stat">
-                    <div class="hero-stat-number">500+</div>
-                    <div class="hero-stat-label">{{ 'Випускників' if lang == 'uk' else 'Graduates' }}</div>
+                    <div class="hero-stat-number">1000+</div>
+                    <div class="hero-stat-label">{{ 'Студентів' if lang == 'uk' else 'Students' }}</div>
                 </div>
                 <div class="hero-stat">
-                    <div class="hero-stat-number">10+</div>
+                    <div class="hero-stat-number">15+</div>
                     <div class="hero-stat-label">{{ 'Років досвіду' if lang == 'uk' else 'Years Experience' }}</div>
                 </div>
                 <div class="hero-stat">
-                    <div class="hero-stat-number">50+</div>
+                    <div class="hero-stat-number">100+</div>
                     <div class="hero-stat-label">{{ 'Маршрутів' if lang == 'uk' else 'Routes' }}</div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div class="hero-decor">
         <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="50" cy="50" r="47" stroke="#E8A838" stroke-width="2"/>
@@ -67,15 +87,15 @@
             <div class="about-image">
                 <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80" alt="Yacht sailing">
                 <div class="about-image-badge">
-                    <span class="number">10+</span>
+                    <span class="number">15+</span>
                     <span class="text">{{ 'років' if lang == 'uk' else 'years' }}</span>
                 </div>
             </div>
-            
+
             <div class="about-content">
                 <h2>{{ 'Про Sea Life Yacht School' if lang == 'uk' else 'About Sea Life Yacht School' }}</h2>
-                <p>{{ 'Sea Life — це більше ніж школа яхтингу. Це спільнота людей, які закохані в море та вітрильний спорт. Ми пропонуємо професійне навчання за міжнародними стандартами та організовуємо незабутні морські подорожі.' if lang == 'uk' else 'Sea Life is more than a yacht school. It\'s a community of people who are in love with the sea and sailing. We offer professional training according to international standards and organize unforgettable sea adventures.' }}</p>
-                <p>{{ 'Наші інструктори мають багаторічний досвід та міжнародні сертифікати. Ми навчаємо на сучасних яхтах в найкращих акваторіях Чорногорії.' if lang == 'uk' else 'Our instructors have many years of experience and international certificates. We train on modern yachts in the best waters of Montenegro.' }}</p>
+                <p>{{ 'Sea Life Yacht School — це більше ніж школа яхтингу. Це спільнота людей, які закохані в море та вітрила, людей, які цінують свободу і відповідальність, людей, які йдуть за своєю мрією. Ми почали свій шлях понад 15 років тому з простої ідеї — зробити яхтинг доступним для кожного.' if lang == 'uk' else 'Sea Life Yacht School is more than just a yacht school. It\'s a community of people who are in love with the sea and sails, people who value freedom and responsibility, people who follow their dreams. We started our journey over 15 years ago with a simple idea — to make yachting accessible to everyone.' }}</p>
+                <p>{{ 'Сьогодні ми пропонуємо професійне навчання за міжнародними стандартами IYT та організовуємо незабутні морські подорожі Середземкою та іншими регіонами. Наша основна база знаходиться в Чорногорії, але навчання не обмежується лише цією акваторією, а подорожі – взагалі не мають меж!' if lang == 'uk' else 'Today we offer professional training according to international IYT standards and organize unforgettable sea adventures in the Mediterranean and other regions. Our main base is in Montenegro, but training is not limited to these waters, and trips have no limits at all!' }}</p>
                 
                 <div class="about-features">
                     <div class="about-feature">
@@ -131,9 +151,14 @@
                     </div>
                 </div>
                 
-                <a href="{{ url_for('about') }}" class="btn btn-primary mt-2">
-                    {{ 'Дізнатися більше' if lang == 'uk' else 'Learn More' }}
-                </a>
+                <div class="about-actions">
+                    <a href="{{ url_for('about') }}" class="btn btn-primary mt-2">
+                        {{ 'Дізнатися більше' if lang == 'uk' else 'Learn More' }}
+                    </a>
+                    <a href="https://www.iytworld.com/" target="_blank" class="iyt-logo-link" title="International Yacht Training Worldwide">
+                        <img src="https://www.iytworld.com/wp-content/uploads/2021/06/iyt-logo.png" alt="IYT - International Yacht Training Worldwide" class="iyt-logo">
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -289,7 +314,7 @@
             <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">
                 {{ 'Залишити заявку' if lang == 'uk' else 'Leave a Request' }}
             </a>
-            <a href="https://t.me/{{ config.get('TG_CONTACT', 'a_liudvichuk') }}" target="_blank" class="btn btn-white btn-lg">
+            <a href="https://t.me/+380770156800" target="_blank" class="btn btn-white btn-lg">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.324-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.1.154.234.169.33.015.097.034.318.019.49z"/>
                 </svg>

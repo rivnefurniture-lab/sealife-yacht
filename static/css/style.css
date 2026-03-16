@@ -1394,6 +1394,240 @@ textarea.form-control {
     box-shadow: 0 6px 30px rgba(232, 168, 56, 0.5);
 }
 
+/* ============== HERO PROS & CONS ============== */
+
+.hero-pros-cons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-2xl);
+    padding: var(--space-xl);
+    background: rgba(255,255,255,0.05);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(5px);
+}
+
+.hero-pros h3,
+.hero-cons h3 {
+    color: var(--primary);
+    font-size: 1.25rem;
+    margin-bottom: var(--space-md);
+    font-family: var(--font-display);
+}
+
+.hero-cons h3 {
+    color: #ff6b6b;
+}
+
+.hero-pros ul,
+.hero-cons ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.hero-pros li,
+.hero-cons li {
+    position: relative;
+    padding-left: 1.5rem;
+    font-size: 0.95rem;
+    color: var(--sea-light);
+    line-height: 1.5;
+}
+
+.hero-pros li::before {
+    content: '+';
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.hero-cons li::before {
+    content: '-';
+    position: absolute;
+    left: 0;
+    color: #ff6b6b;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 767px) {
+    .hero-pros-cons {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+        padding: var(--space-md);
+    }
+}
+
+/* ============== IYT LOGO ============== */
+
+.about-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+    margin-top: var(--space-xl);
+    flex-wrap: wrap;
+}
+
+.iyt-logo-link {
+    display: inline-block;
+    transition: var(--transition-base);
+}
+
+.iyt-logo-link:hover {
+    transform: scale(1.05);
+}
+
+.iyt-logo {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* ============== COMMUNITY PAGE ============== */
+
+.community-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--dark-blue) 0%, var(--navy) 100%);
+    overflow: hidden;
+}
+
+.community-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.community-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.2;
+}
+
+.community-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(13, 27, 42, 0.92) 0%, rgba(27, 38, 59, 0.85) 100%);
+}
+
+.community-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 700px;
+    color: var(--white);
+    padding: var(--space-4xl) 0;
+}
+
+.community-content h1 {
+    color: var(--white);
+    margin-bottom: var(--space-lg);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+}
+
+.community-subtitle {
+    font-size: 1.2rem;
+    color: var(--sea-light);
+    margin-bottom: var(--space-2xl);
+    line-height: 1.7;
+}
+
+.community-features {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2xl);
+    margin-bottom: var(--space-3xl);
+    flex-wrap: wrap;
+}
+
+.community-feature {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--sea-light);
+    font-size: 0.95rem;
+}
+
+.community-feature svg {
+    color: var(--primary);
+}
+
+.btn-community-cta {
+    background: linear-gradient(135deg, #0088cc 0%, #0077b5 100%);
+    color: var(--white);
+    padding: var(--space-xl) var(--space-3xl);
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-radius: var(--radius-full);
+    box-shadow: 0 8px 30px rgba(0, 136, 204, 0.4);
+}
+
+.btn-community-cta:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(0, 136, 204, 0.5);
+}
+
+.community-note {
+    margin-top: var(--space-xl);
+    color: var(--gray-400);
+    font-size: 0.9rem;
+}
+
+@keyframes communityCTAPulse {
+    0%, 100% { box-shadow: 0 8px 30px rgba(0, 136, 204, 0.4); }
+    50% { box-shadow: 0 8px 50px rgba(0, 136, 204, 0.7), 0 0 20px rgba(0, 136, 204, 0.3); }
+}
+
+.community-cta-pulse {
+    animation: communityCTAPulse 2s ease-in-out infinite;
+}
+
+@media (max-width: 640px) {
+    .community-features {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-md);
+    }
+
+    .btn-community-cta {
+        padding: var(--space-lg) var(--space-xl);
+        font-size: 1rem;
+    }
+}
+
+/* ============== FLOATING TG BUTTON ANIMATION ============== */
+
+@keyframes tgPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 4px 20px rgba(232, 168, 56, 0.4); }
+    50% { transform: scale(1.1); box-shadow: 0 6px 30px rgba(232, 168, 56, 0.6), 0 0 15px rgba(232, 168, 56, 0.3); }
+}
+
+@keyframes tgChannelPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 4px 20px rgba(0, 136, 204, 0.4); }
+    50% { transform: scale(1.1); box-shadow: 0 6px 30px rgba(0, 136, 204, 0.6), 0 0 15px rgba(0, 136, 204, 0.3); }
+}
+
+.tg-btn-contact {
+    animation: tgPulse 2s ease-in-out infinite;
+}
+
+.tg-btn-channel {
+    animation: tgChannelPulse 2.5s ease-in-out infinite;
+}
+
+.tg-btn:hover {
+    animation: none;
+    transform: scale(1.15);
+}
+
 /* ============== ANIMATIONS ============== */
 
 @keyframes fadeIn {

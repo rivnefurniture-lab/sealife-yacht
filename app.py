@@ -208,6 +208,10 @@ def contact():
     trips = Trip.query.filter_by(is_active=True).all()
     return render_template('pages/contact.html', trips=trips)
 
+@app.route('/community')
+def community():
+    return render_template('pages/community.html')
+
 @app.route('/set-lang/<lang>')
 def set_lang(lang):
     session['lang'] = lang
