@@ -7,7 +7,7 @@
     {% if trip.image %}
     <img src="{{ url_for('static', filename='uploads/' + trip.image) }}" alt="{{ trip.title_uk if lang == 'uk' else trip.title_en }}">
     {% else %}
-    <img src="https://images.unsplash.com/photo-1500514966906-fe245eea9344?w=1920&q=80" alt="Yacht">
+    <img src="https://images.unsplash.com/photo-1733272967076-3a2ce81226e4?w=1920&q=80" alt="Yacht">
     {% endif %}
     <div class="trip-detail-hero-overlay"></div>
     <div class="trip-detail-hero-content">
