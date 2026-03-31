@@ -177,8 +177,11 @@ def blog():
 @app.route('/blog/<slug>')
 def blog_post(slug):
     post = BlogPost.query.filter_by(slug=slug, is_published=True).first_or_404()
-    post.views += 1
-    db.session.commit()
+    try:
+        post.views += 1
+        db.session.commit()
+    except Exception:
+        db.session.rollback()
     related = BlogPost.query.filter(BlogPost.id != post.id, BlogPost.is_published == True).limit(3).all()
     return render_template('pages/blog_post.html', post=post, related=related)
 
