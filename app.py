@@ -19,8 +19,8 @@ app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max
 
 # Telegram settings
-app.config['TG_CHANNEL'] = 'sealife_yachtschool'  # Telegram channel for news/updates
-app.config['TG_CONTACT'] = 'a_liudvichuk'          # Telegram contact for direct messages/requests
+app.config['TG_CHANNEL'] = 'SEALIFE_yachting'  # Telegram channel for news/updates
+app.config['TG_CONTACT'] = 'SEALIFE_yachting'          # Telegram contact for direct messages/requests
 
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
