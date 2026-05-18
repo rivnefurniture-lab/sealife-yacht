@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ 'Про нас' if lang == 'uk' else 'About Us' }} - Sea Life Yacht School{% endblock %}
+{% block title %}{{ 'Про нас' if lang == 'uk' else 'About' }} — SEA LIFE Yacht School{% endblock %}
 
 {% block content %}
 <section class="page-header">
     <div class="container">
-        <nav class="breadcrumb">
+        <div class="breadcrumb">
             <a href="{{ url_for('home') }}">{{ 'Головна' if lang == 'uk' else 'Home' }}</a>
-            <span>/</span>
-            <span>{{ 'Про нас' if lang == 'uk' else 'About Us' }}</span>
-        </nav>
-        <h1>{{ 'Про Sea Life' if lang == 'uk' else 'About Sea Life' }}</h1>
-        <p>{{ 'Школа яхтингу та організація морських подорожей' if lang == 'uk' else 'Yacht school and sea travel organization' }}</p>
+            <span>·</span>
+            <span>{{ 'Про нас' if lang == 'uk' else 'About' }}</span>
+        </div>
+        <h1>{{ 'Про SEA LIFE' if lang == 'uk' else 'About SEA LIFE' }}</h1>
+        <p>{{ 'Школа усвідомленого мореплавства та незабутніх подорожей.' if lang == 'uk' else 'A school of mindful sailing and unforgettable journeys.' }}</p>
     </div>
 </section>
 
@@ -19,109 +19,62 @@
     <div class="container">
         <div class="about-grid">
             <div class="about-image">
-                <img src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=800&q=80" alt="Sea Life Team">
+                <img src="{{ url_for('static', filename='images/brand/photos/hero-yacht-1.jpg') }}" alt="{{ 'Команда SEA LIFE' if lang == 'uk' else 'SEA LIFE crew' }}">
                 <div class="about-image-badge">
                     <span class="number">15+</span>
                     <span class="text">{{ 'років' if lang == 'uk' else 'years' }}</span>
                 </div>
             </div>
-
             <div class="about-content">
-                <h2>{{ 'Наша історія' if lang == 'uk' else 'Our Story' }}</h2>
-                <p>{{ 'Sea Life Yacht School — це більше ніж школа яхтингу. Це спільнота людей, які закохані в море та вітрила, людей, які цінують свободу і відповідальність, людей, які йдуть за своєю мрією. Ми почали свій шлях понад 15 років тому з простої ідеї — зробити яхтинг доступним для кожного.' if lang == 'uk' else 'Sea Life Yacht School is more than just a yacht school. It\'s a community of people who are in love with the sea and sails, people who value freedom and responsibility, people who follow their dreams. We started our journey over 15 years ago with a simple idea — to make yachting accessible to everyone.' }}</p>
-                <p>{{ 'Сьогодні ми пропонуємо професійне навчання за міжнародними стандартами IYT та організовуємо незабутні морські подорожі Середземкою та іншими регіонами. Наша основна база знаходиться в Чорногорії, але навчання не обмежується лише цією акваторією, а подорожі – взагалі не мають меж!' if lang == 'uk' else 'Today we offer professional training according to international IYT standards and organize unforgettable sea adventures in the Mediterranean and other regions. Our main base is in Montenegro, but training is not limited to these waters, and trips have no limits at all!' }}</p>
+                <span class="eyebrow">{{ 'Наша історія' if lang == 'uk' else 'Our Story' }}</span>
+                <h2>{{ 'Життя у ритмі моря' if lang == 'uk' else 'Life in the Rhythm of the Sea' }}</h2>
+                <p>{{ 'SEA LIFE Yacht School — школа яхтингу, що формує культуру усвідомленого мореплавства. Ми навчаємо не лише керувати яхтою, а й мислити спокійно, точно та відповідально в умовах відкритого моря.' if lang == 'uk' else 'SEA LIFE Yacht School shapes a culture of mindful sailing. We teach not only how to command a yacht, but also how to think calmly, precisely, and responsibly on the open sea.' }}</p>
+                <p>{{ 'SEA LIFE — це про дисципліну, повагу до стихії та внутрішню свободу, що народжується зі знань і досвіду. Наша головна база — у Чорногорії, але навчання не обмежується цією акваторією, а подорожі взагалі не мають меж.' if lang == 'uk' else 'SEA LIFE is about discipline, respect for the elements, and the inner freedom born of knowledge and experience. Our home base is Montenegro — but training is not limited to these waters, and journeys have no borders at all.' }}</p>
+                <p style="font-family: var(--font-display); font-size: 1.25rem; color: var(--navy); border-left: 3px solid var(--yellow); padding-left: 1.25rem; margin-top: 2rem;">{{ 'SEA LIFE дає не відчуття моря — а готовність бути з ним на рівних.' if lang == 'uk' else 'SEA LIFE gives you not the feeling of the sea — but the readiness to meet it as an equal.' }}</p>
             </div>
         </div>
     </div>
 </section>
 
-<section class="section">
+<section class="section section-sky">
     <div class="container">
         <div class="section-header">
-            <h2>{{ 'Чому обирають нас' if lang == 'uk' else 'Why Choose Us' }}</h2>
+            <span class="eyebrow">{{ 'Чому ми' if lang == 'uk' else 'Why Us' }}</span>
+            <h2>{{ 'Що відрізняє SEA LIFE' if lang == 'uk' else 'What Sets SEA LIFE Apart' }}</h2>
+            <p>{{ 'Шість речей, заради яких до нас повертаються.' if lang == 'uk' else 'Six things that bring people back to us.' }}</p>
         </div>
 
         <div class="grid grid-3">
-            <div class="about-feature" style="flex-direction: column; text-align: center;">
-                <div class="about-feature-icon" style="margin: 0 auto 1rem;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                        <polyline points="22 4 12 14.01 9 11.01"/>
-                    </svg>
+            {% set features = [
+              ('Сертифікат IYT' if lang == 'uk' else 'IYT Certificate', 'Від International Flotilla Skipper до Yachtmaster Offshore — повний шлях у морі.' if lang == 'uk' else 'From International Flotilla Skipper to Yachtmaster Offshore — the full path at sea.'),
+              ('Малі екіпажі' if lang == 'uk' else 'Small Crews', 'До 6 осіб на борту — максимум практики, мінімум черг.' if lang == 'uk' else 'Up to 6 aboard — maximum practice, minimum queues.'),
+              ('Повний практичний курс' if lang == 'uk' else 'Full Practical Course', '2 тижні занурення — як справжня морська експедиція.' if lang == 'uk' else 'Two weeks of immersion — like a real sea expedition.'),
+              ('Інтенсивний курс' if lang == 'uk' else 'Intensive Course', 'Найпрактичніші навички за 10 днів — для тих, хто цінує час.' if lang == 'uk' else 'The most practical skills in 10 days — for those who value time.'),
+              ('Курс по катамаранах' if lang == 'uk' else 'Catamaran Course', '3 дні чистої практики на двох корпусах.' if lang == 'uk' else 'Three days of pure practice on twin hulls.'),
+              ('Додаткові курси' if lang == 'uk' else 'Add-on Courses', 'Майстер швартовки, навігація, нічні переходи та інше.' if lang == 'uk' else 'Mooring master, navigation, night passages and more.')
+            ] %}
+            {% for title, desc in features %}
+            <div style="background: var(--white); padding: 2rem 1.8rem; border-radius: var(--radius-sm); border: 1px solid var(--navy-10); text-align: left;">
+                <div class="about-feature-icon" style="margin-bottom: 1.2rem;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 </div>
-                <h4>{{ 'Міжнародний сертифікат IYT' if lang == 'uk' else 'International IYT Certificate' }}</h4>
-                <p>{{ 'Навчання з нуля від початківця International Flotilla Skipper до фахівця високого класу Yachtmaster Offshore' if lang == 'uk' else 'Training from beginner International Flotilla Skipper to advanced Yachtmaster Offshore' }}</p>
+                <h4 style="margin-bottom: 0.6rem;">{{ title }}</h4>
+                <p style="margin: 0; color: var(--navy-70); font-size: 0.95rem;">{{ desc }}</p>
             </div>
-
-            <div class="about-feature" style="flex-direction: column; text-align: center;">
-                <div class="about-feature-icon" style="margin: 0 auto 1rem;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                        <circle cx="9" cy="7" r="4"/>
-                        <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-                    </svg>
-                </div>
-                <h4>{{ 'Малі групи' if lang == 'uk' else 'Small Groups' }}</h4>
-                <p>{{ 'До 6 людей на курсі' if lang == 'uk' else 'Up to 6 people per course' }}</p>
-            </div>
-
-            <div class="about-feature" style="flex-direction: column; text-align: center;">
-                <div class="about-feature-icon" style="margin: 0 auto 1rem;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                        <line x1="16" y1="2" x2="16" y2="6"/>
-                        <line x1="8" y1="2" x2="8" y2="6"/>
-                        <line x1="3" y1="10" x2="21" y2="10"/>
-                    </svg>
-                </div>
-                <h4>{{ 'Повний практичний курс' if lang == 'uk' else 'Full Practical Course' }}</h4>
-                <p>{{ 'За 2 тижні' if lang == 'uk' else 'In 2 weeks' }}</p>
-            </div>
-
-            <div class="about-feature" style="flex-direction: column; text-align: center;">
-                <div class="about-feature-icon" style="margin: 0 auto 1rem;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                    </svg>
-                </div>
-                <h4>{{ 'Інтенсивний курс' if lang == 'uk' else 'Intensive Course' }}</h4>
-                <p>{{ 'Найпрактичніші навички за 10 днів' if lang == 'uk' else 'Most practical skills in 10 days' }}</p>
-            </div>
-
-            <div class="about-feature" style="flex-direction: column; text-align: center;">
-                <div class="about-feature-icon" style="margin: 0 auto 1rem;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                    </svg>
-                </div>
-                <h4>{{ 'Курс по катамаранах' if lang == 'uk' else 'Catamaran Course' }}</h4>
-                <p>{{ '3 дні тільки практики' if lang == 'uk' else '3 days of pure practice' }}</p>
-            </div>
-
-            <div class="about-feature" style="flex-direction: column; text-align: center;">
-                <div class="about-feature-icon" style="margin: 0 auto 1rem;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M12 6v6l4 2"/>
-                    </svg>
-                </div>
-                <h4>{{ 'Додаткові практичні курси' if lang == 'uk' else 'Additional Practical Courses' }}</h4>
-                <p>{{ 'Майстер швартовки та інші' if lang == 'uk' else 'Mooring master and others' }}</p>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
 
-<section class="section cta-section">
+<section class="cta-section">
     <div class="container">
-        <h2>{{ 'Готові почати?' if lang == 'uk' else 'Ready to Start?' }}</h2>
-        <p>{{ 'Зв\'яжіться з нами та отримайте консультацію щодо вибору курсу або подорожі' if lang == 'uk' else 'Contact us and get advice on choosing a course or trip' }}</p>
-        <div class="hero-buttons" style="justify-content: center;">
-            <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">
-                {{ 'Зв\'язатися з нами' if lang == 'uk' else 'Contact Us' }}
-            </a>
+        <span class="eyebrow eyebrow-light">{{ 'Курс прокладено' if lang == 'uk' else 'Course Plotted' }}</span>
+        <h2>{{ 'Готовий зробити перший крок?' if lang == 'uk' else 'Ready to take the first step?' }}</h2>
+        <p>{{ 'Розкажемо про курси та поможемо обрати маршрут, що пасує саме тобі.' if lang == 'uk' else 'We\'ll walk you through our courses and help you find the right route.' }}</p>
+        <div class="hero-buttons" style="justify-content: center; margin-bottom: 0;">
+            <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">{{ 'Зв\'язатися з нами' if lang == 'uk' else 'Contact Us' }}</a>
+            <a href="{{ url_for('trips') }}" class="btn btn-outline-light btn-lg">{{ 'Подивитись курси' if lang == 'uk' else 'View Courses' }}</a>
         </div>
     </div>
 </section>
 {% endblock %}
-
