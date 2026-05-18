@@ -316,22 +316,34 @@ main { min-height: 60vh; }
     top: 0; left: 0; right: 0;
     z-index: 100;
     padding: 1.1rem 0;
-    background: rgba(255, 255, 255, 0.0);
-    backdrop-filter: saturate(140%) blur(8px);
-    -webkit-backdrop-filter: saturate(140%) blur(8px);
+    background: linear-gradient(180deg, rgba(22, 31, 58, 0.45) 0%, rgba(22, 31, 58, 0.0) 100%);
     border-bottom: 1px solid transparent;
-    transition: var(--transition-base);
+    transition: background var(--transition-base), padding var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
 }
-.header .logo, .header .nav-link, .header .lang-switch a { color: var(--cream); }
-.header .logo-text span { color: rgba(241, 241, 241, 0.72); }
+.header .logo,
+.header .nav-link,
+.header .lang-switch a,
+.header .logo-text {
+    color: var(--cream);
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+}
+.header .logo-text span { color: rgba(241, 241, 241, 0.85); }
+.header .nav-link.active { color: var(--cream); }
+.header .lang-switch a { color: rgba(241, 241, 241, 0.7); }
+.header .lang-switch a.active { color: var(--cream); border-bottom-color: var(--yellow); }
 .header .mobile-toggle span { background: var(--cream); }
 .header.scrolled {
     background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
     border-bottom-color: var(--navy-10);
     box-shadow: var(--shadow-sm);
     padding: 0.65rem 0;
 }
-.header.scrolled .logo, .header.scrolled .nav-link, .header.scrolled .lang-switch a { color: var(--navy); }
+.header.scrolled .logo,
+.header.scrolled .nav-link,
+.header.scrolled .lang-switch a,
+.header.scrolled .logo-text { color: var(--navy); text-shadow: none; }
 .header.scrolled .logo-text span { color: var(--navy-70); }
 .header.scrolled .lang-switch a:not(.active) { color: var(--navy-50); }
 .header.scrolled .mobile-toggle span { background: var(--navy); }
@@ -463,8 +475,8 @@ main { min-height: 60vh; }
     inset: 0;
     z-index: 1;
     background:
-        linear-gradient(180deg, rgba(22, 31, 58, 0.28) 0%, rgba(22, 31, 58, 0.55) 65%, rgba(22, 31, 58, 0.72) 100%),
-        linear-gradient(90deg, rgba(22, 31, 58, 0.25) 0%, transparent 55%);
+        linear-gradient(180deg, rgba(22, 31, 58, 0.72) 0%, rgba(22, 31, 58, 0.32) 18%, rgba(22, 31, 58, 0.42) 55%, rgba(22, 31, 58, 0.72) 100%),
+        linear-gradient(90deg, rgba(22, 31, 58, 0.28) 0%, transparent 55%);
 }
 .hero .container { position: relative; z-index: 2; }
 
